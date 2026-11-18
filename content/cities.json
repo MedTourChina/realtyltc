@@ -1,0 +1,403 @@
+[
+  {
+    "slug": "shanghai",
+    "name": "Shanghai",
+    "name_zh": "上海",
+    "pinyin": "Shànghǎi",
+    "region": "East China",
+    "rank": 1,
+    "tagline": "The deepest market, and the one most foreign buyers inspect first.",
+    "intro": [
+      "Shanghai is where the foreign-buyer question gets asked most often, and for good reason: it has the largest resident expatriate population in mainland China, the widest choice of stock, and the most mature professional infrastructure — English-speaking counsel, bilingual notaries, banks that have processed foreign purchase files before.",
+      "It is also the most expensive and the most tightly administered. Purchase limits, tax treatment and mortgage policy are all applied at the municipal level, and the practical rules differ from what a national-level summary will tell you."
+    ],
+    "price_band": "¥70k–140k/m²",
+    "yield_band": "1.4%–1.9%",
+    "price_mid": 95000,
+    "rent_mid": 125,
+    "foreign_note": "Most foreign purchases are self-use apartments in Jing'an, Xuhui, Changning and Pudong, typically 1–3 bedrooms between 90m² and 180m².",
+    "eligibility": "One self-use home only. You must have worked or studied in Shanghai for at least one year, and the property must be in Shanghai. Bring passport, valid residence permit, employment or enrolment proof, and a marriage certificate if applicable.",
+    "districts": [
+      { "name": "Jing'an", "zh": "静安", "note": "Central, walkable, strong rental demand from corporate tenants. The default choice for buyers who want the city on foot." },
+      { "name": "Xuhui", "zh": "徐汇", "note": "The old French Concession grid plus strong schools. Best balance of character, education and resale liquidity." },
+      { "name": "Changning", "zh": "长宁", "note": "Gubei and Hongqiao: the established Japanese and Korean communities, international schools, and larger family apartments." },
+      { "name": "Pudong", "zh": "浦东", "note": "Lujiazui for new-build towers, Jinqiao for villa compounds and international schools, Zhangjiang for tech employment." },
+      { "name": "Minhang", "zh": "闵行", "note": "Where families go for space and schooling. Longer commutes, better value per square metre." }
+    ],
+    "market": "The secondary market dominates. New-build supply inside the Outer Ring is scarce and often sold under price guidance that only appears at launch, so most foreign buyers end up in resale apartments or in villa compounds on the eastern and western edges.",
+    "settling": "Two international airports, a metro that reaches almost everywhere, and the deepest concentration of international schools and English-speaking hospitals in the country. This is the easiest Chinese city for a newly arrived family to operate in.",
+    "risks": [
+      "Price guidance on new launches is opaque; the advertised range is not the transacted range.",
+      "Older lane houses (老洋房) carry heritage restrictions that can block renovation.",
+      "School catchment rules change, and a confirmed place is not guaranteed by proximity alone."
+    ],
+    "best_for": "Buyers who need depth of choice, professional infrastructure and liquidity on exit."
+  },
+  {
+    "slug": "beijing",
+    "name": "Beijing",
+    "name_zh": "北京",
+    "pinyin": "Běijīng",
+    "region": "North China",
+    "rank": 2,
+    "tagline": "Diplomatic, educational, and administratively the most cautious.",
+    "intro": [
+      "Beijing concentrates embassies, state-owned enterprise headquarters, the country's best universities and the largest diplomatic community in China. Foreign residential demand follows that map: Chaoyang for the diplomatic and business core, Shunyi for compounds and international schools, Haidian for families anchored to education.",
+      "Administration here is thorough. Expect document checks to be literal, timelines to be longer, and the housing authority to apply the one-home rule without much discretion."
+    ],
+    "price_band": "¥60k–120k/m²",
+    "yield_band": "1.5%–2.0%",
+    "price_mid": 82000,
+    "rent_mid": 120,
+    "foreign_note": "Villa compounds in Shunyi and Chaoyang, and mid-rise apartments near the Third Ring, account for most foreign purchases.",
+    "eligibility": "One self-use home. At least one year of work or study in Beijing, purchase within Beijing, valid residence permit, and proof of employment or enrolment. Married applicants must declare the spouse's property holdings in China.",
+    "districts": [
+      { "name": "Chaoyang", "zh": "朝阳", "note": "CBD, Sanlitun, Liangmaqiao. Where most foreign residents actually live and socialise." },
+      { "name": "Shunyi", "zh": "顺义", "note": "Villa territory. International schools, larger plots, car-dependent, close to the airport." },
+      { "name": "Haidian", "zh": "海淀", "note": "Universities and the strongest school district in the country. Premium pricing follows catchment." },
+      { "name": "Dongcheng & Xicheng", "zh": "东城 / 西城", "note": "The historic core. Scarce stock, strict controls, courtyard houses with heritage constraints." },
+      { "name": "Yizhuang", "zh": "亦庄", "note": "New economic zone in the south-east; newer stock, better value, thinner services for foreigners." }
+    ],
+    "market": "Resale apartments near the ring roads are the workable middle. Courtyard houses (四合院) are a specialist purchase with title and heritage complications that most buyers underestimate.",
+    "settling": "Excellent hospitals and schools, brutal traffic, and long distances between the places you will actually spend time. Choose the neighbourhood around your commute and school run before you choose the apartment.",
+    "risks": [
+      "School catchment (学区) premiums are volatile and policy-driven.",
+      "Heating, insulation and building age vary enormously between 1990s and 2010s stock.",
+      "Some compounds restrict foreign ownership at the building or management level — always check before signing."
+    ],
+    "best_for": "Families anchored to education and institutions, and buyers who value a deep professional services market."
+  },
+  {
+    "slug": "shenzhen",
+    "name": "Shenzhen",
+    "name_zh": "深圳",
+    "pinyin": "Shēnzhèn",
+    "region": "South China",
+    "rank": 3,
+    "tagline": "Youngest stock in the country, and the most finance-driven buyer pool.",
+    "intro": [
+      "Shenzhen grew from a fishing town to a megacity in forty years, and its housing stock shows it: most of what you can buy was built after 2000, with better layouts, lifts and management than older cities can offer.",
+      "The foreign community is smaller than Shanghai's but highly concentrated: Shekou and Sea World for families, Futian and Nanshan for finance and technology, and a growing Korean and Japanese presence in the east."
+    ],
+    "price_band": "¥65k–115k/m²",
+    "yield_band": "1.4%–1.8%",
+    "price_mid": 85000,
+    "rent_mid": 115,
+    "foreign_note": "Apartments in Shekou and Nanshan dominate. Villa compounds exist but are scarce and priced accordingly.",
+    "eligibility": "One self-use home. One year of work or study in Shenzhen, purchase inside Shenzhen, valid residence permit and employment proof. Expect the local housing bureau to verify social insurance or tax records.",
+    "districts": [
+      { "name": "Shekou", "zh": "蛇口", "note": "The expatriate heartland: international schools, the ferry to Hong Kong, walkable streets and a settled foreign community." },
+      { "name": "Futian", "zh": "福田", "note": "CBD, best metro coverage, most central. Smaller units and higher prices per square metre." },
+      { "name": "Nanshan", "zh": "南山", "note": "Technology employers, coastal views, strong schools. The most competitive bidding outside Futian." },
+      { "name": "Luohu", "zh": "罗湖", "note": "Older, denser, closest to the Hong Kong border. Better value, older buildings." },
+      { "name": "Bao'an", "zh": "宝安", "note": "Newer stock and airport access, popular with buyers who accept a longer commute." }
+    ],
+    "market": "New-build launches are frequent and often sold in phases with escalating pricing. Resale in Shekou and Nanshan is the most liquid segment for foreign buyers.",
+    "settling": "Humid subtropical climate, excellent air quality by Chinese standards, and easy access to Hong Kong for flights and schooling. A one-hour ferry or a short train ride changes what services you have access to.",
+    "risks": [
+      "Urban village (城中村) redevelopment timelines are politically driven and can stall for years.",
+      "Some newer stock is sold with restricted resale windows — confirm the certificate date, not the handover date.",
+      "Summer humidity punishes poorly maintained buildings; inspect for damp and air-conditioning age."
+    ],
+    "best_for": "Buyers who want modern stock, a compact foreign community, and proximity to Hong Kong."
+  },
+  {
+    "slug": "guangzhou",
+    "name": "Guangzhou",
+    "name_zh": "广州",
+    "pinyin": "Guǎngzhōu",
+    "region": "South China",
+    "rank": 4,
+    "tagline": "Cantonese daily life, African and Middle Eastern trade communities, gentler prices.",
+    "intro": [
+      "Guangzhou is the most liveable of the tier-one cities on a per-square-metre basis. Food, climate and street life are the draw; prices sit well below Beijing, Shanghai and Shenzhen for equivalent quality.",
+      "Its foreign population is distinctive: a long-established African trading community around Xiaobei and Sanyuanli, a Middle Eastern business community, and a smaller Western corporate presence concentrated in Tianhe."
+    ],
+    "price_band": "¥30k–70k/m²",
+    "yield_band": "2.0%–2.6%",
+    "price_mid": 42000,
+    "rent_mid": 78,
+    "foreign_note": "Tianhe apartments for corporate families; Yuexiu and Haizhu for buyers who want central life at a lower entry point.",
+    "eligibility": "One self-use home, one year of work or study in Guangzhou, purchase inside the city, valid residence permit and employment proof. Guangzhou administers purchase limits by district, so confirm the specific district rule before you commit.",
+    "districts": [
+      { "name": "Tianhe", "zh": "天河", "note": "Zhujiang New Town and the CBD. The default for corporate families and the most international services." },
+      { "name": "Yuexiu", "zh": "越秀", "note": "Old city centre, best schools, dense and walkable. Older buildings, strong resale demand." },
+      { "name": "Haizhu", "zh": "海珠", "note": "Island district south of the river; improving stock and good value near the Canton Fair complex." },
+      { "name": "Panyu", "zh": "番禺", "note": "Suburban space, larger units, popular with families who accept a commute." },
+      { "name": "Baiyun", "zh": "白云", "note": "Airport side; mixed stock quality, strong trading-community rental demand." }
+    ],
+    "market": "Prices have corrected less than in Shenzhen and the market is broader. Renovation quality varies enormously, and a good building manager is worth more here than a good view.",
+    "settling": "Subtropical, humid, and cheap to live in relative to the other tier-one cities. Cantonese is widely spoken; Mandarin and English work in the CBD. The trade communities around Xiaobei operate in French, Arabic and English as much as Chinese.",
+    "risks": [
+      "District-level purchase restrictions can change faster than city-level ones.",
+      "Older buildings may lack proper management fees, leading to deferred maintenance.",
+      "Some trading-community areas have informal rental arrangements that are hard to unwind."
+    ],
+    "best_for": "Buyers who want tier-one infrastructure without tier-one pricing, and families who prioritise food and climate."
+  },
+  {
+    "slug": "hangzhou",
+    "name": "Hangzhou",
+    "name_zh": "杭州",
+    "pinyin": "Hángzhōu",
+    "region": "East China",
+    "rank": 5,
+    "tagline": "Technology money, a lake, and the best quality of life per yuan.",
+    "intro": [
+      "Hangzhou built its modern economy on e-commerce and platform technology, and its housing market on the people those companies pay. The result is a city with tier-one aspiration and tier-two prices for much of its geography.",
+      "For foreign buyers it is a smaller, calmer alternative to Shanghai — an hour by high-speed rail — with a compact international school scene and a strong domestic professional class."
+    ],
+    "price_band": "¥30k–65k/m²",
+    "yield_band": "2.0%–2.6%",
+    "price_mid": 43000,
+    "rent_mid": 78,
+    "foreign_note": "Most foreign purchases are in Xihu, Gongshu and Binjiang, within reach of the tech employers and the lake.",
+    "eligibility": "One self-use home, one year of work or study in Hangzhou, purchase inside the city, valid residence permit and employment proof. The local bureau checks social insurance continuity closely.",
+    "districts": [
+      { "name": "Xihu", "zh": "西湖", "note": "Around the lake and the old city. The most desirable address, the tightest supply, the highest prices." },
+      { "name": "Gongshu", "zh": "拱墅", "note": "Canal-side districts, improving stock, good schools, strong value." },
+      { "name": "Binjiang", "zh": "滨江", "note": "Technology employers along the river. Newer buildings, younger buyer pool, good rental demand." },
+      { "name": "Yuhang", "zh": "余杭", "note": "Future Science City; long-horizon bets on infrastructure, currently car-dependent." },
+      { "name": "Xiaoshan", "zh": "萧山", "note": "Airport side, industrial base, broad price range." }
+    ],
+    "market": "Hangzhou has been one of the more speculative tier-two markets, with strong new-build supply on the western edge. Buy in established districts if liquidity matters to you.",
+    "settling": "Compact, green, and unusually pleasant to walk. High-speed rail to Shanghai in about an hour makes it a genuine satellite for people whose work is split between the two.",
+    "risks": [
+      "New-build supply on the western periphery has outpaced demand in cycles.",
+      "School quality is uneven across districts and drives large price gaps.",
+      "Summer heat and humidity are significant; building ventilation matters."
+    ],
+    "best_for": "Buyers who want a lower entry price with genuine urban amenities, and remote or hybrid workers."
+  },
+  {
+    "slug": "suzhou",
+    "name": "Suzhou",
+    "name_zh": "苏州",
+    "pinyin": "Sūzhōu",
+    "region": "East China",
+    "rank": 6,
+    "tagline": "The most organised expatriate suburb in China.",
+    "intro": [
+      "The Suzhou Industrial Park (SIP) is one of the most deliberately planned expatriate environments in the country: international schools, hospitals, housing compounds and services within a few kilometres, built to serve foreign manufacturing and technology executives.",
+      "Outside SIP, Suzhou is an old canal city with gardens, a compact historic core, and a much more local rhythm."
+    ],
+    "price_band": "¥22k–45k/m²",
+    "yield_band": "2.2%–2.8%",
+    "price_mid": 32000,
+    "rent_mid": 62,
+    "foreign_note": "SIP accounts for the large majority of foreign purchases: apartments and townhouses in Jinji Lake-adjacent compounds.",
+    "eligibility": "One self-use home, one year of work or study in Suzhou, purchase inside the city, valid residence permit and employment proof. SIP and the historic districts are administered with different local practices.",
+    "districts": [
+      { "name": "Suzhou Industrial Park", "zh": "苏州工业园区", "note": "Jinji Lake, international schools, compounds built for expatriate families. The default choice." },
+      { "name": "Gusu", "zh": "姑苏", "note": "The historic core: gardens, canals, low-rise, heritage restrictions. Beautiful, impractical for cars." },
+      { "name": "Wuzhong", "zh": "吴中", "note": "Lakefront and suburban; larger units, better value, longer commute." },
+      { "name": "Xiangcheng", "zh": "相城", "note": "North of the old city, newer stock, improving transport links." }
+    ],
+    "market": "SIP is a mature, well-supplied market with strong rental demand from corporate tenants. The old city is a lifestyle purchase with real constraints on renovation.",
+    "settling": "Twenty-five minutes to Shanghai by high-speed rail. Excellent bilingual schools inside SIP, and a foreign community that is corporate, settled and family-oriented rather than transient.",
+    "risks": [
+      "Heritage rules in Gusu can prevent structural changes and extension.",
+      "SIP rental demand is tied to a small number of large employers.",
+      "Some compounds outside SIP lack English-speaking property management."
+    ],
+    "best_for": "Corporate families who want a settled, school-centred environment with Shanghai within commuting reach."
+  },
+  {
+    "slug": "chengdu",
+    "name": "Chengdu",
+    "name_zh": "成都",
+    "pinyin": "Chéngdū",
+    "region": "Southwest China",
+    "rank": 7,
+    "tagline": "Cheapest tier-one lifestyle in the country, and a real foreign community.",
+    "intro": [
+      "Chengdu has the lowest entry price of any major Chinese city with genuine international amenities, and a reputation for a slower, more sociable pace of life that attracts long-stay foreigners rather than transient postings.",
+      "The foreign community is small but rooted: consulates, universities, a growing technology sector, and a food and café culture that does a lot of the integration work."
+    ],
+    "price_band": "¥15k–35k/m²",
+    "yield_band": "2.6%–3.2%",
+    "price_mid": 23000,
+    "rent_mid": 52,
+    "foreign_note": "Jinjiang and Wuhou for central life, Gaoxin for newer stock and technology employers.",
+    "eligibility": "One self-use home, one year of work or study in Chengdu, purchase inside the city, valid residence permit and employment proof. Chengdu has been more relaxed than the coastal tier-one cities on enforcement detail, but the national framework still applies.",
+    "districts": [
+      { "name": "Jinjiang", "zh": "锦江", "note": "Central, walkable, the most established foreign-friendly neighbourhoods and services." },
+      { "name": "Wuhou", "zh": "武侯", "note": "Consulates, universities, good stock in the mid-range." },
+      { "name": "Gaoxin", "zh": "高新", "note": "Technology employers, newer buildings, younger buyer pool." },
+      { "name": "Tianfu New Area", "zh": "天府新区", "note": "Long-horizon infrastructure bet; large supply, thinner current services." }
+    ],
+    "market": "Supply is broad and prices are moderate. The risk is not price level but oversupply in the new districts, which can leave resale liquidity thin for a decade.",
+    "settling": "Two airports, a growing metro, excellent food, and the lowest cost of living of any city on this list. Winter is damp and grey; summers are hot.",
+    "risks": [
+      "Oversupply in peripheral new districts suppresses resale liquidity.",
+      "Fewer English-speaking lawyers and notaries than in Shanghai or Beijing.",
+      "Air quality is better than it was, but still variable in winter."
+    ],
+    "best_for": "Long-stay buyers who prioritise lifestyle and cost over liquidity, and remote workers."
+  },
+  {
+    "slug": "nanjing",
+    "name": "Nanjing",
+    "name_zh": "南京",
+    "pinyin": "Nánjīng",
+    "region": "East China",
+    "rank": 8,
+    "tagline": "University city with the strongest school premium outside Beijing.",
+    "intro": [
+      "Nanjing is a provincial capital with a deep university base, a large state-sector employer footprint, and some of the most competitive school catchments in the country.",
+      "It is not a large expatriate city, which means less English-language service depth — and, for buyers who plan to stay, considerably better value than Shanghai, ninety minutes away by rail."
+    ],
+    "price_band": "¥26k–50k/m²",
+    "yield_band": "2.2%–2.8%",
+    "price_mid": 34000,
+    "rent_mid": 66,
+    "foreign_note": "Gulou and Jianye account for most foreign purchases: central, well-served, strong school access.",
+    "eligibility": "One self-use home, one year of work or study in Nanjing, purchase inside the city, valid residence permit and employment proof.",
+    "districts": [
+      { "name": "Gulou", "zh": "鼓楼", "note": "The university and school core. Highest prices, oldest stock, best education access." },
+      { "name": "Jianye", "zh": "建业", "note": "New CBD along the river; newer buildings, good value, thinner street life." },
+      { "name": "Xuanwu", "zh": "玄武", "note": "Lake and park side, central, mixed stock quality." },
+      { "name": "Jiangning", "zh": "江宁", "note": "Suburban, larger units, popular with families priced out of Gulou." }
+    ],
+    "market": "School-catchment pricing dominates the premium segment. Outside those catchments the market is ordinary for a strong tier-two city.",
+    "settling": "Compact, green, well-connected by rail to Shanghai and Beijing. Fewer international schools than Shanghai — verify options before committing to a district.",
+    "risks": [
+      "Catchment premiums can be repriced by administrative decision.",
+      "Limited English-speaking professional services outside the central districts.",
+      "Older central stock often needs full renovation, which is harder to manage remotely."
+    ],
+    "best_for": "Families who want strong education at tier-two prices and can accept a smaller service market."
+  },
+  {
+    "slug": "tianjin",
+    "name": "Tianjin",
+    "name_zh": "天津",
+    "pinyin": "Tiānjīn",
+    "region": "North China",
+    "rank": 9,
+    "tagline": "Beijing without the price, with a colonial-era core.",
+    "intro": [
+      "Tianjin sits thirty minutes from Beijing by high-speed rail and offers a materially lower entry price for similar urban amenities, plus a distinctive concession-era architectural core around Wudadao.",
+      "Its foreign community is modest and partly institutional: universities, the Binhai industrial zone, and families who choose Tianjin because Beijing is priced out or overcrowded."
+    ],
+    "price_band": "¥15k–32k/m²",
+    "yield_band": "2.6%–3.2%",
+    "price_mid": 22000,
+    "rent_mid": 50,
+    "foreign_note": "Heping and Nankai for central life; Binhai TEDA for buyers employed in the industrial zone.",
+    "eligibility": "One self-use home, one year of work or study in Tianjin, purchase inside the city, valid residence permit and employment proof. Binhai has its own administrative practice — confirm before relying on city-level guidance.",
+    "districts": [
+      { "name": "Heping", "zh": "和平", "note": "The concession-era core and best schools. Walkable, characterful, scarce stock." },
+      { "name": "Nankai", "zh": "南开", "note": "Universities and older residential districts; solid value and good transport." },
+      { "name": "Hexi", "zh": "河西", "note": "Newer central stock, international schools, popular with families." },
+      { "name": "Binhai / TEDA", "zh": "滨海 / 泰达", "note": "Industrial and port zone; purpose-built housing for corporate staff, weak resale liquidity." }
+    ],
+    "market": "Prices have been flat to soft for several years. This is a buyer's market with genuinely negotiable pricing and slow resale.",
+    "settling": "Half an hour to Beijing by rail, lower cost of living, and good hospitals. Colder and drier than the south; heating is standard in winter.",
+    "risks": [
+      "Weak resale liquidity, especially in Binhai.",
+      "The foreign service ecosystem is thin outside the central districts.",
+      "Some historic buildings carry protection orders that restrict renovation."
+    ],
+    "best_for": "Buyers with Beijing ties who want space and value, and corporate staff on Binhai assignments."
+  },
+  {
+    "slug": "qingdao",
+    "name": "Qingdao",
+    "name_zh": "青岛",
+    "pinyin": "Qīngdǎo",
+    "region": "East China",
+    "rank": 10,
+    "tagline": "Coastal, German-built, and the most popular second-home city in the north.",
+    "intro": [
+      "Qingdao trades on sea air, a German-era old town, and a brewing tradition. It attracts Korean and Japanese residents in particular, alongside a seasonal second-home market from Beijing and Shanghai.",
+      "The old town and the coastal strip around Shinan are the emotional draw; Laoshan and Huangdao offer newer stock and better value."
+    ],
+    "price_band": "¥18k–40k/m²",
+    "yield_band": "2.4%–3.0%",
+    "price_mid": 28000,
+    "rent_mid": 58,
+    "foreign_note": "Sea-view apartments in Shinan and Laoshan, and newer stock in Huangdao across the bay.",
+    "eligibility": "One self-use home, one year of work or study in Qingdao, purchase inside the city, valid residence permit and employment proof. Qingdao has historically applied additional local purchase restrictions — verify current practice.",
+    "districts": [
+      { "name": "Shinan", "zh": "市南", "note": "Old town, coastline, the classic Qingdao address. Scarce stock, premium pricing." },
+      { "name": "Laoshan", "zh": "崂山", "note": "Coastal and mountain side; newer apartments, good air, car-dependent." },
+      { "name": "Huangdao", "zh": "黄岛", "note": "Across the bay; large new supply, lower prices, thinner services." },
+      { "name": "Shinan Old Town", "zh": "老城区", "note": "Heritage buildings with strict renovation limits; a lifestyle purchase, not a rental play." }
+    ],
+    "market": "A seasonal market with a strong summer premium and soft winters. Rental yields look better than they are because of seasonal vacancy.",
+    "settling": "Coastal climate, beaches, and a compact, walkable old town. Direct flights to Seoul, Tokyo and major Chinese cities. Winter is windy and cold relative to its latitude.",
+    "risks": [
+      "Seasonal rental vacancy distorts yield expectations.",
+      "Heritage restrictions in the old town are strict.",
+      "Local purchase restrictions have changed repeatedly."
+    ],
+    "best_for": "Second-home buyers and retirees who want sea air with urban amenities."
+  },
+  {
+    "slug": "xiamen",
+    "name": "Xiamen",
+    "name_zh": "厦门",
+    "pinyin": "Xiàmén",
+    "region": "Southeast China",
+    "rank": 11,
+    "tagline": "Island city, Taiwanese and Southeast Asian ties, and a strong school reputation.",
+    "intro": [
+      "Xiamen is a compact island city with a mild climate, a long history of overseas Chinese and Taiwanese investment, and a reputation for well-run schools that supports premium pricing.",
+      "Foreign demand is small but includes buyers with family or business ties to Taiwan, Southeast Asia and the diaspora, rather than corporate postings."
+    ],
+    "price_band": "¥35k–62k/m²",
+    "yield_band": "1.8%–2.4%",
+    "price_mid": 46000,
+    "rent_mid": 72,
+    "foreign_note": "Siming island apartments dominate; Jimei across the bridge offers newer stock at lower prices.",
+    "eligibility": "One self-use home, one year of work or study in Xiamen, purchase inside the city, valid residence permit and employment proof. Expect careful checks given the cross-strait context.",
+    "districts": [
+      { "name": "Siming", "zh": "思明", "note": "The island core: Gulangyu views, best schools, highest prices, tightest supply." },
+      { "name": "Huli", "zh": "湖里", "note": "Older island district, better value, strong local rental demand." },
+      { "name": "Jimei", "zh": "集美", "note": "Across the bridge: university district, newer apartments, lower entry price." },
+      { "name": "Haicang", "zh": "海沧", "note": "Suburban mainland side; large units, weak liquidity." }
+    ],
+    "market": "Island supply is genuinely constrained, which supports prices. Off-island supply is abundant, which does not.",
+    "settling": "Mild winters, sea access, and a small but functional international school scene. Typhoon season is real between July and September.",
+    "risks": [
+      "Off-island oversupply weakens resale.",
+      "Typhoon and humidity exposure for older buildings.",
+      "Small English-speaking professional market."
+    ],
+    "best_for": "Buyers with regional family ties who want a mild-climate island base."
+  },
+  {
+    "slug": "wuhan",
+    "name": "Wuhan",
+    "name_zh": "武汉",
+    "pinyin": "Wǔhàn",
+    "region": "Central China",
+    "rank": 12,
+    "tagline": "The cheapest major hub, and a large student population.",
+    "intro": [
+      "Wuhan is a transport and education hub at the geographic centre of the country, with more university students than almost any city in China and housing prices well below the coastal tier-one markets.",
+      "The foreign community is small and largely academic or industrial. This is a market for buyers with a specific reason to be there, not for general lifestyle or investment demand."
+    ],
+    "price_band": "¥14k–28k/m²",
+    "yield_band": "2.8%–3.4%",
+    "price_mid": 20000,
+    "rent_mid": 48,
+    "foreign_note": "Wuchang and Hongshan near the universities; Jiang'an for central riverfront stock.",
+    "eligibility": "One self-use home, one year of work or study in Wuhan, purchase inside the city, valid residence permit and employment proof.",
+    "districts": [
+      { "name": "Wuchang", "zh": "武昌", "note": "Universities, lake views, the strongest education cluster." },
+      { "name": "Hongshan", "zh": "洪山", "note": "Optics Valley technology zone; younger buyer pool, newer stock." },
+      { "name": "Jiang'an", "zh": "江岸", "note": "Historic concession district on the river; characterful, mixed quality." },
+      { "name": "Hanyang", "zh": "汉阳", "note": "Industrial heritage, better value, improving transport." }
+    ],
+    "market": "Prices are low in absolute terms and supply is ample. Liquidity is the constraint: a resale can take a long time to clear.",
+    "settling": "Excellent rail connections in every direction, low cost of living, hot summers and cold, damp winters. Limited international schooling.",
+    "risks": [
+      "Thin resale market; expect long marketing periods.",
+      "Very limited English-speaking legal and property services.",
+      "Extreme summer heat affects older buildings without good cooling."
+    ],
+    "best_for": "Buyers with an academic or industrial posting who need affordability above all."
+  }
+]

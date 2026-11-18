@@ -1,0 +1,22 @@
+# Build output
+dist/
+
+# Local screenshots and scratch files
+shots/
+tmp*/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Wrangler
+.wrangler/

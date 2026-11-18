@@ -1,0 +1,376 @@
+"""HTML shell, shared chrome and reusable components.
+
+No forms. No analytics hooks. No third-party requests. The only script on the
+site is a small local file that powers the three calculators.
+"""
+
+from __future__ import annotations
+
+import json
+import re
+
+from . import config as C
+from . import svg
+
+
+def esc(value: object) -> str:
+    text = "" if value is None else str(value)
+    return (
+        text.replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+        .replace('"', "&quot;")
+    )
+
+
+def btn(label: str, href: str, kind: str = "primary", *, size: str = "",
+        icon_name: str | None = "arrow", block: bool = False) -> str:
+    cls = f"btn btn-{kind}"
+    if size:
+        cls += f" btn-{size}"
+    if block:
+        cls += " btn-block"
+    glyph = f'<span class="btn-icon">{svg.icon(icon_name, 18)}</span>' if icon_name else ""
+    return f'<a class="{cls}" href="{href}">{label}{glyph}</a>'
+
+
+def crumbs(items: list[tuple[str, str | None]]) -> str:
+    parts = []
+    for label, href in items:
+        if href:
+            parts.append(f'<a href="{href}">{esc(label)}</a>')
+        else:
+            parts.append(f'<span aria-current="page">{esc(label)}</span>')
+    return (
+        '<nav class="crumbs" aria-label="Breadcrumb"><ol>'
+        + "".join(f"<li>{p}</li>" for p in parts)
+        + "</ol></nav>"
+    )
+
+
+def site_header(nav_active: str | None = None) -> str:
+    links = []
+    for label, href in C.NAV:
+        current = ' aria-current="page"' if label == nav_active else ""
+        links.append(f'<a class="nav-link" href="{href}"{current}>{label}</a>')
+    return f"""
+<header class="site-header" data-header>
+  <div class="wrap header-inner">
+    <a class="brand" href="/" aria-label="{C.SITE_NAME} — home">
+      {svg.BRAND_MARK}
+      <span class="brand-text">
+        <span class="brand-name">{C.SITE_NAME}</span>
+        <span class="brand-sub">China property</span>
+      </span>
+    </a>
+    <nav class="main-nav" id="site-nav" aria-label="Primary">
+      {''.join(links)}
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn-primary header-cta" href="/framework/">Start here</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span data-icon-open>{svg.icon('menu', 22)}</span>
+        <span data-icon-close hidden>{svg.icon('close', 22)}</span>
+      </button>
+    </div>
+  </div>
+</header>"""
+
+
+def site_footer() -> str:
+    cols = []
+    for title, links in C.FOOTER_NAV:
+        items = "".join(f'<li><a href="{h}">{esc(l)}</a></li>' for l, h in links)
+        cols.append(f'<div class="footer-col"><h2 class="footer-head">{title}</h2><ul>{items}</ul></div>')
+
+    return f"""
+<footer class="site-footer">
+  <div class="footer-sky" aria-hidden="true">{svg.skyline('footer', 1400, 120, '#d98a3a', 0.10, 'skyline skyline-wide')}</div>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand brand-light" href="/">
+          {svg.BRAND_MARK}
+          <span class="brand-text">
+            <span class="brand-name">{C.SITE_NAME}</span>
+            <span class="brand-sub">China property</span>
+          </span>
+        </a>
+        <p class="footer-blurb">{C.SITE_TAGLINE} A free, independent guide that helps foreigners decide whether to buy property in China — and how to check it themselves.</p>
+        <p class="pledge">{svg.icon('shield', 18)}<span>{C.PLEDGE}</span></p>
+      </div>
+      {''.join(cols)}
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 {C.SITE_NAME}. {esc(C.LEGAL_ENTITY)}. Written and maintained by {esc(C.AUTHOR_NAME)}.</p>
+      <p class="footer-disclosure">General information only — not legal, tax or investment advice. <a href="/legal/disclaimer/">Read the disclaimer</a>.</p>
+    </div>
+  </div>
+</footer>"""
+
+
+def page(
+    *,
+    title: str,
+    description: str,
+    path: str,
+    body: str,
+    nav_active: str | None = None,
+    body_class: str = "",
+    jsonld: list[dict] | None = None,
+    og_type: str = "website",
+    noindex: bool = False,
+    extra_scripts: str = "",
+) -> str:
+    canonical = C.SITE_URL + path
+    full_title = title if title == C.SITE_NAME else f"{title} · {C.SITE_NAME}"
+    robots = '<meta name="robots" content="noindex,follow">' if noindex else '<meta name="robots" content="index,follow,max-image-preview:large">'
+
+    schemas = ""
+    if jsonld:
+        for obj in jsonld:
+            schemas += (
+                '<script type="application/ld+json">'
+                + json.dumps(obj, ensure_ascii=False, separators=(",", ":"))
+                + "</script>\n"
+            )
+
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{esc(full_title)}</title>
+<meta name="description" content="{esc(description)}">
+{robots}
+<link rel="canonical" href="{canonical}">
+<meta property="og:type" content="{og_type}">
+<meta property="og:site_name" content="{C.SITE_NAME}">
+<meta property="og:title" content="{esc(title)}">
+<meta property="og:description" content="{esc(description)}">
+<meta property="og:url" content="{canonical}">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="{C.SITE_URL}/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#12192b">
+<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/favicon.svg">
+<link rel="stylesheet" href="/css/site.css">
+{schemas}</head>
+<body class="{body_class}">
+<a class="skip-link" href="#main">Skip to content</a>
+{site_header(nav_active)}
+<main id="main">
+{body}
+</main>
+{site_footer()}
+<script src="/js/main.js" defer></script>
+{extra_scripts}
+</body>
+</html>
+"""
+
+
+# ---------------------------------------------------------------- components
+
+def section(kicker: str, title: str, sub: str = "", inner: str = "", *,
+            sid: str = "", cls: str = "", head_cls: str = "") -> str:
+    id_attr = f' id="{sid}"' if sid else ""
+    sub_html = f'<p class="section-sub">{sub}</p>' if sub else ""
+    kick_html = f'<p class="eyebrow">{kicker}</p>' if kicker else ""
+    return f"""
+<section class="section {cls}"{id_attr}>
+  <div class="wrap">
+    <div class="section-head {head_cls}">
+      {kick_html}
+      <h2 class="section-title">{title}</h2>
+      {sub_html}
+    </div>
+    {inner}
+  </div>
+</section>"""
+
+
+def answer_box(label: str, html_body: str) -> str:
+    return f"""
+<aside class="answer">
+  <p class="answer-label">{esc(label)}</p>
+  <div class="answer-body">{html_body}</div>
+</aside>"""
+
+
+def stat(num: str, label: str, note: str = "") -> str:
+    note_html = f'<span class="stat-note">{esc(note)}</span>' if note else ""
+    return f'<div class="stat"><span class="stat-num">{esc(num)}</span><span class="stat-label">{esc(label)}</span>{note_html}</div>'
+
+
+def editorial_note(text: str) -> str:
+    return f"""
+<aside class="editorial-note">
+  {svg.icon('file', 18)}
+  <p>{text}</p>
+</aside>"""
+
+
+def city_card(city: dict, index: int = 0) -> str:
+    sky = svg.skyline(city["slug"], 340, 104, "currentColor", 1.0, "skyline")
+    return f"""
+<a class="city-card" href="/cities/{city['slug']}/" style="--i:{index}">
+  <div class="city-card-sky">{sky}</div>
+  <div class="city-card-body">
+    <div class="city-card-top">
+      <h3 class="city-card-name">{esc(city['name'])}</h3>
+      <span class="city-card-zh">{esc(city['name_zh'])}</span>
+    </div>
+    <p class="city-card-tag">{esc(city['tagline'])}</p>
+    <dl class="city-card-stats">
+      <div><dt>Median asking</dt><dd>{esc(city['price_band'])}</dd></div>
+      <div><dt>Gross yield</dt><dd>{esc(city['yield_band'])}</dd></div>
+    </dl>
+  </div>
+</a>"""
+
+
+def guide_card(post: dict) -> str:
+    layer = post.get("layer")
+    layer_html = ""
+    if layer:
+        layer_html = f'<span class="tag tag-layer">Layer {layer}</span>'
+    return f"""
+<a class="guide-card" href="/guides/{post['slug']}/">
+  <div class="guide-card-meta">
+    <span class="tag tag-cat">{esc(post['category'])}</span>{layer_html}
+  </div>
+  <h3 class="guide-card-title">{esc(post['title'])}</h3>
+  <p class="guide-card-desc">{esc(post['description'])}</p>
+  <span class="guide-card-more">Read the guide {svg.icon('arrow', 16)}</span>
+</a>"""
+
+
+def layer_card(layer: dict) -> str:
+    return f"""
+<a class="layer-card" href="/framework/{layer['slug']}/">
+  <span class="layer-card-num">{layer['n']:02d}</span>
+  <h3 class="layer-card-title">{esc(layer['question'])}</h3>
+  <p class="layer-card-desc">{esc(layer['summary'])}</p>
+  <span class="layer-card-more">{esc(layer['name'])} {svg.icon('arrow', 15)}</span>
+</a>"""
+
+
+def flow(steps: list[tuple[str, str]]) -> str:
+    """Horizontal decision flow: label, caption."""
+    parts = []
+    for i, (label, caption) in enumerate(steps):
+        parts.append(
+            f'<li class="flow-step"><span class="flow-num">{i + 1}</span>'
+            f'<span class="flow-label">{esc(label)}</span>'
+            f'<span class="flow-caption">{esc(caption)}</span></li>'
+        )
+    arrows = '<span class="flow-arrow" aria-hidden="true">→</span>'
+    return f'<ol class="flow">' + arrows.join(parts) + "</ol>"
+
+
+def kill_box(title: str, html_body: str) -> str:
+    return f"""
+<aside class="kill-box">
+  <p class="kill-title">{svg.icon('close', 15)} {esc(title)}</p>
+  <div class="kill-body">{html_body}</div>
+</aside>"""
+
+
+def byline(post: dict) -> str:
+    return f"""
+<div class="byline">
+  <div class="byline-item">
+    <span class="byline-label">Written by</span>
+    <span class="byline-value">{esc(post.get('author', C.AUTHOR_NAME))}</span>
+  </div>
+  <div class="byline-item">
+    <span class="byline-label">Reviewed by</span>
+    <span class="byline-value">{esc(post.get('reviewer', C.REVIEWER_NAME))}</span>
+  </div>
+  <div class="byline-item">
+    <span class="byline-label">Last reviewed</span>
+    <span class="byline-value">{esc(post.get('updated_human', C.LAST_UPDATED))}</span>
+  </div>
+  <div class="byline-item">
+    <span class="byline-label">Reading time</span>
+    <span class="byline-value">{esc(post.get('read', '8'))} min</span>
+  </div>
+</div>"""
+
+
+def toc(items: list[tuple[str, str]]) -> str:
+    if len(items) < 3:
+        return ""
+    links = "".join(f'<li><a href="#{hid}">{esc(text)}</a></li>' for hid, text in items)
+    return f"""
+<nav class="toc" aria-label="On this page">
+  <p class="toc-title">On this page</p>
+  <ol>{links}</ol>
+</nav>"""
+
+
+def related(posts: list[dict], title: str = "Related guides") -> str:
+    if not posts:
+        return ""
+    cards = "".join(guide_card(p) for p in posts)
+    return f"""
+<section class="section section-tight">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Keep reading</p>
+      <h2 class="section-title">{esc(title)}</h2>
+    </div>
+    <div class="grid grid-3">{cards}</div>
+  </div>
+</section>"""
+
+
+def rail(active: str | None = None) -> str:
+    """Sticky layer navigation for framework chapters."""
+    items = []
+    for l in C.LAYERS:
+        cls = "rail-item is-active" if l["slug"] == active else "rail-item"
+        items.append(
+            f'<a class="{cls}" href="/framework/{l["slug"]}/">'
+            f'<span class="rail-num">{l["n"]:02d}</span><span class="rail-name">{esc(l["name"])}</span></a>'
+        )
+    return f'<nav class="rail" aria-label="The five layers">{"".join(items)}</nav>'
+
+
+def pager(prev: dict | None, nxt: dict | None) -> str:
+    parts = []
+    if prev:
+        parts.append(
+            f'<a class="pager-item pager-prev" href="/framework/{prev["slug"]}/">'
+            f'<span class="pager-label">Layer {prev["n"]:02d} — previous</span>'
+            f'<span class="pager-title">{esc(prev["name"])}</span></a>'
+        )
+    if nxt:
+        parts.append(
+            f'<a class="pager-item pager-next" href="/framework/{nxt["slug"]}/">'
+            f'<span class="pager-label">Layer {nxt["n"]:02d} — next</span>'
+            f'<span class="pager-title">{esc(nxt["name"])}</span></a>'
+        )
+    if not parts:
+        return ""
+    return f'<nav class="pager" aria-label="Chapter navigation">{"".join(parts)}</nav>'
+
+
+def strip_tags(html_text: str) -> str:
+    return re.sub(r"<[^>]+>", "", html_text).strip()
+
+
+def fmt_price(cny: int | float) -> str:
+    try:
+        value = float(cny)
+    except (TypeError, ValueError):
+        return "—"
+    if value >= 1_000_000:
+        return f"¥{value / 1_000_000:.2f}".rstrip("0").rstrip(".") + "M"
+    if value >= 1_000:
+        return f"¥{value / 1_000:.0f}k"
+    return f"¥{value:.0f}"
