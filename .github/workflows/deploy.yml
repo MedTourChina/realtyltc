@@ -39,6 +39,10 @@ jobs:
   deploy:
     name: Deploy to Cloudflare Pages
     needs: verify
+    # Cloudflare is not wired up yet. Flip this on by creating a repository
+    # variable CLOUDFLARE_PAGES_READY = true and adding the two secrets
+    # (CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID) under Settings.
+    if: ${{ vars.CLOUDFLARE_PAGES_READY == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

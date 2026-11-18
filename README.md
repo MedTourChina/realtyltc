@@ -121,49 +121,45 @@ related: the-one-year-rule, escrow-and-payment-stages
 
 ## 四、发布到 GitHub + Cloudflare Pages
 
-### 路线 A(推荐):GitHub Actions 构建 → Cloudflare 直传
+**仓库已经建好并推送完成:https://github.com/MedTourChina/realtyltc**
 
-仓库里已经带好 `.github/workflows/deploy.yml`,推 `main` 就自动构建 + 自检 + 发布。
+### 当前状态
 
-**第 1 步:创建 GitHub 仓库并推送**
+| 环节 | 状态 |
+|---|---|
+| GitHub 仓库 + 代码推送 | ✅ 已完成 |
+| CI 构建与自检(`verify` 任务) | ✅ 每次推送自动跑 |
+| Cloudflare Pages 部署 | ⏸ 开关默认关闭,等你绑定 |
 
-```bash
-git remote add origin git@github.com:<你的账号>/realtyltc.git
-git branch -M main
-git push -u origin main
-```
+Cloudflare 那一步没配之前,`deploy` 任务会被跳过(不是失败),所以仓库不会挂红叉。这是由 `.github/workflows/deploy.yml` 里的 `if: vars.CLOUDFLARE_PAGES_READY == 'true'` 控制的。
 
-没有仓库就先建(需要 `gh` 已登录):
+### 你回来之后要做的三步
 
-```bash
-gh repo create realtyltc --public --source=. --push
-```
-
-**第 2 步:在 Cloudflare 建一个同名空项目**
+**第 1 步:在 Cloudflare 建一个同名空项目**
 
 控制台 → *Workers & Pages* → *Create* → *Pages* → **Upload assets**(Direct Upload)→ 项目名填 `realtyltc` → 建好即可,不用真的上传文件。
 
 > 这一步不能省。`wrangler pages deploy` 在非交互环境(CI)里不会自动创建项目,项目不存在会直接失败。
 
-**第 3 步:拿两个值**
+**第 2 步:拿两个值**
 
 1. **API Token**:Cloudflare 控制台 → 右上头像 → *My Profile* → *API Tokens* → *Create Token* → 用 **Edit Cloudflare Workers** 模板,或自定义:权限 `Account · Cloudflare Pages · Edit`,资源限定到你的账号。
 2. **Account ID**:控制台 → *Workers & Pages* → 概览页右侧可见。
 
-**第 4 步:写进 GitHub Secrets**
+**第 3 步:配置并打开开关**
 
-仓库 → *Settings* → *Secrets and variables* → *Actions* → *New repository secret*:
+仓库 → *Settings* → *Secrets and variables* → *Actions*:
 
-| Name | Value |
-|---|---|
-| `CLOUDFLARE_API_TOKEN` | 上一步的 token |
-| `CLOUDFLARE_ACCOUNT_ID` | 你的 account id |
+1. 在 **Secrets** 里加两个:`CLOUDFLARE_API_TOKEN`、`CLOUDFLARE_ACCOUNT_ID`
+2. 在 **Variables** 里加一个:`CLOUDFLARE_PAGES_READY` = `true` ← **这个变量一存,下次推送就会真的部署**
 
-**第 5 步:触发**
+然后推任意 commit(或到 *Actions* 页点 *Run workflow*),拿到 `https://realtyltc.pages.dev`。
 
-推送任意 commit 到 `main`,或到 *Actions* 页手动 *Run workflow*。
-第一次成功后会得到 `https://realtyltc.pages.dev`。
-`wrangler.toml` 里的 `name` 要和 `--project-name` 保持一致。
+### 完整流程概览
+
+推 `main` → `verify` 任务构建 + 自检 → `deploy` 任务(开关打开时)发布到 Cloudflare Pages。
+
+`wrangler.toml` 里的 `name` 要和工作流里的 `--project-name` 保持一致(现在两处都是 `realtyltc`)。
 
 ### 路线 B(备选):零 Secret,直接把 dist 提交上去
 
