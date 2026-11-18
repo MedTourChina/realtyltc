@@ -12,6 +12,7 @@
 # Local screenshots and scratch files
 shots/
 tmp*/
+.verify/
 
 # Python
 __pycache__/
