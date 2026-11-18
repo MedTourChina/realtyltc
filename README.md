@@ -41,7 +41,7 @@ python check.py     # 退出码 0 才算通过
 ## 二、目录结构
 
 ```
-lantern-china/
+realtyltc/
 ├── build.py                  # 生成器入口:读内容 → 写 dist/ + sitemap + robots
 ├── check.py                  # 静态检查:死链、锚点、元数据
 ├── sitegen/
@@ -128,7 +128,7 @@ related: the-one-year-rule, escrow-and-payment-stages
 **第 1 步:创建 GitHub 仓库并推送**
 
 ```bash
-git remote add origin git@github.com:<你的账号>/lantern-china.git
+git remote add origin git@github.com:<你的账号>/realtyltc.git
 git branch -M main
 git push -u origin main
 ```
@@ -136,12 +136,12 @@ git push -u origin main
 没有仓库就先建(需要 `gh` 已登录):
 
 ```bash
-gh repo create lantern-china --public --source=. --push
+gh repo create realtyltc --public --source=. --push
 ```
 
 **第 2 步:在 Cloudflare 建一个同名空项目**
 
-控制台 → *Workers & Pages* → *Create* → *Pages* → **Upload assets**(Direct Upload)→ 项目名填 `lantern-china` → 建好即可,不用真的上传文件。
+控制台 → *Workers & Pages* → *Create* → *Pages* → **Upload assets**(Direct Upload)→ 项目名填 `realtyltc` → 建好即可,不用真的上传文件。
 
 > 这一步不能省。`wrangler pages deploy` 在非交互环境(CI)里不会自动创建项目,项目不存在会直接失败。
 
@@ -162,7 +162,7 @@ gh repo create lantern-china --public --source=. --push
 **第 5 步:触发**
 
 推送任意 commit 到 `main`,或到 *Actions* 页手动 *Run workflow*。
-第一次成功后会得到 `https://lantern-china.pages.dev`。
+第一次成功后会得到 `https://realtyltc.pages.dev`。
 `wrangler.toml` 里的 `name` 要和 `--project-name` 保持一致。
 
 ### 路线 B(备选):零 Secret,直接把 dist 提交上去
@@ -190,11 +190,28 @@ git push
 优点:不用 API Token、不依赖 CI、不存在构建环境差异。
 缺点:每次改内容都要本地 `python build.py` 后再提交。
 
-### 自定义域名
+### 绑定域名 realty.lifetourchina.com
 
-项目 → *Custom domains* → 添加域名。
-域名 DNS 已托管在 Cloudflare 时,会提示自动添加 CNAME 记录,点一次即可;否则手动加 `CNAME → lantern-china.pages.dev`。
-建议同时开启 *Always Use HTTPS* 与 HSTS。
+站点域名已写进 `sitegen/config.py` 的 `SITE_URL`,它决定 canonical、sitemap 和 og:url —— **换域名必须改这里并重新构建**。
+
+绑定步骤:
+
+1. Cloudflare Pages 项目 → *Custom domains* → *Set up a custom domain* → 填 `realty.lifetourchina.com`
+2. 因为 `lifetourchina.com` 这个区(zone)本身就在 Cloudflare 上,Pages 会直接替你写好一条 `realty` 的 CNAME,指向 `realtyltc.pages.dev`——点确认即可,不用去 DNS 面板手动加
+3. 等状态从 *Initializing* 变成 *Active*(通常 1–5 分钟,证书签发完成后自动 HTTPS)
+4. 项目 → *Settings* → 打开 *Always Use HTTPS*;可选开 HSTS
+
+> 如果 `lifetourchina.com` 的 NS 不在 Cloudflare(比如还在阿里云),那么第 2 步不会自动完成,需要手动在域名服务商处添加:
+> `类型 CNAME · 主机记录 realty · 记录值 realtyltc.pages.dev`,然后再回 Pages 点一次校验。
+
+绑定完成后验证一遍:
+
+```bash
+curl -I https://realty.lifetourchina.com/
+# 期望:HTTP/2 200,并且能看到 content-security-policy 响应头(_headers 生效)
+curl -s https://realty.lifetourchina.com/sitemap.xml | head -5
+# 期望:<loc>https://realty.lifetourchina.com/...</loc>
+```
 
 ### 上线后检查清单
 

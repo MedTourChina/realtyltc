@@ -54,7 +54,7 @@ The running cost is a domain name and a static host, which together are smaller 
 
 If you find something factually wrong — a rule that has changed, a rate that is out of date, a figure that does not reconcile — the correction is genuinely welcome, because accuracy is the only asset this project has.
 
-Write to **notes@lanternchina.com** with the page and the source. There is no other inbox, and no one will try to sell you anything in reply.
+Write to **notes@lifetourchina.com** with the page and the source. There is no other inbox, and no one will try to sell you anything in reply.
 
 ## The one thing to take away
 

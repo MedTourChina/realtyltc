@@ -10,7 +10,12 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from sitegen import config as C
+
 DIST = Path(__file__).resolve().parent / "dist"
+SITE_HOST = C.SITE_URL.split("//", 1)[-1]
 
 HREF = re.compile(r'(?:href|src)="(/[^"#?]*)"')
 ANCHOR = re.compile(r'href="/[^"#?]*#([^"]+)"')
@@ -51,7 +56,7 @@ def main() -> int:
 
     for page in pages:
         for m in re.finditer(r'(?:href|src)="(https?://[^"]+)"', page.read_text(encoding="utf-8")):
-            if "lanternchina.com" not in m.group(1):
+            if SITE_HOST not in m.group(1):
                 external.add(m.group(1))
 
     print(f"pages checked: {len(pages)}")

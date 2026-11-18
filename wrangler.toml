@@ -1,6 +1,6 @@
 # Cloudflare Pages configuration.
 # The site is static: no Functions, no bindings, no server runtime.
 
-name = "lantern-china"
+name = "realtyltc"
 pages_build_output_dir = "dist"
 compatibility_date = "2025-01-01"

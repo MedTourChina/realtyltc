@@ -42,6 +42,6 @@ If this ever changes — if a contact form is added, or a privacy-respecting ana
 
 ## Contact
 
-Corrections and privacy questions: **notes@lanternchina.com**.
+Corrections and privacy questions: **notes@lifetourchina.com**.
 
 This page was last reviewed in March 2026.

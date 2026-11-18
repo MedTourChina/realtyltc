@@ -14,10 +14,10 @@ SITE_DESCRIPTION = (
     "the five decisions that come before the price, and how to verify each one yourself."
 )
 
-SITE_URL = "https://lanternchina.com"
+SITE_URL = "https://realty.lifetourchina.com"
 
 # Corrections only. There is no sales inbox, because there is no sales.
-CORRECTIONS_EMAIL = "notes@lanternchina.com"
+CORRECTIONS_EMAIL = "notes@lifetourchina.com"
 
 LEGAL_ENTITY = "An independent editorial project"
 LAST_UPDATED = "March 2026"
