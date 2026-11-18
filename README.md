@@ -139,12 +139,18 @@ git push -u origin main
 gh repo create lantern-china --public --source=. --push
 ```
 
-**第 2 步:在 Cloudflare 拿两个值**
+**第 2 步:在 Cloudflare 建一个同名空项目**
+
+控制台 → *Workers & Pages* → *Create* → *Pages* → **Upload assets**(Direct Upload)→ 项目名填 `lantern-china` → 建好即可,不用真的上传文件。
+
+> 这一步不能省。`wrangler pages deploy` 在非交互环境(CI)里不会自动创建项目,项目不存在会直接失败。
+
+**第 3 步:拿两个值**
 
 1. **API Token**:Cloudflare 控制台 → 右上头像 → *My Profile* → *API Tokens* → *Create Token* → 用 **Edit Cloudflare Workers** 模板,或自定义:权限 `Account · Cloudflare Pages · Edit`,资源限定到你的账号。
 2. **Account ID**:控制台 → *Workers & Pages* → 概览页右侧可见。
 
-**第 3 步:写进 GitHub Secrets**
+**第 4 步:写进 GitHub Secrets**
 
 仓库 → *Settings* → *Secrets and variables* → *Actions* → *New repository secret*:
 
@@ -153,10 +159,10 @@ gh repo create lantern-china --public --source=. --push
 | `CLOUDFLARE_API_TOKEN` | 上一步的 token |
 | `CLOUDFLARE_ACCOUNT_ID` | 你的 account id |
 
-**第 4 步:触发**
+**第 5 步:触发**
 
 推送任意 commit 到 `main`,或到 *Actions* 页手动 *Run workflow*。
-第一次运行会自动在 Cloudflare 建项目 `lantern-china`,并给出 `*.pages.dev` 预览地址。
+第一次成功后会得到 `https://lantern-china.pages.dev`。
 `wrangler.toml` 里的 `name` 要和 `--project-name` 保持一致。
 
 ### 路线 B(备选):零 Secret,直接把 dist 提交上去
