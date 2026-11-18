@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rent vs buy calculator · Lifetourchina Realty</title>
+<meta name="description" content="Compare renting and buying property in China over your own horizon, including transaction costs and the opportunity cost of a down payment.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://realty.lifetourchina.com/tools/rent-vs-buy/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lifetourchina Realty">
+<meta property="og:title" content="Rent vs buy calculator">
+<meta property="og:description" content="Compare renting and buying property in China over your own horizon, including transaction costs and the opportunity cost of a down payment.">
+<meta property="og:url" content="https://realty.lifetourchina.com/tools/rent-vs-buy/">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://realty.lifetourchina.com/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#12192b">
+<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/favicon.svg">
+<link rel="stylesheet" href="/css/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://realty.lifetourchina.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://realty.lifetourchina.com/tools/"},{"@type":"ListItem","position":3,"name":"Rent vs buy","item":"https://realty.lifetourchina.com/tools/rent-vs-buy/"}]}</script>
+</head>
+<body class="page-tool">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" data-header>
+  <div class="wrap header-inner">
+    <a class="brand" href="/" aria-label="Lifetourchina Realty — home">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="16" cy="17" r="13" fill="currentColor" opacity=".08"/><rect x="13" y="1.5" width="6" height="2.6" rx="1.3" fill="currentColor"/><path d="M16 4v2.4" stroke="currentColor" stroke-width="1.6"/><rect x="7.5" y="6.4" width="17" height="4" rx="2" fill="currentColor" opacity=".9"/><path d="M9.6 10.4h12.8c1.1 3.4 1.1 12.2 0 15.2H9.6c-1.1-3-1.1-11.8 0-15.2z" fill="var(--amber)"/><rect x="14.4" y="12.6" width="3.2" height="11" rx="1.6" fill="#fff" opacity=".75"/><rect x="7.8" y="25.7" width="16.4" height="2.6" rx="1.3" fill="currentColor"/></svg>
+      <span class="brand-text">
+        <span class="brand-name">Lifetourchina</span>
+        <span class="brand-sub">Realty</span>
+      </span>
+    </a>
+    <nav class="main-nav" id="site-nav" aria-label="Primary">
+      <a class="nav-link" href="/framework/">Framework</a><a class="nav-link" href="/cities/">Cities</a><a class="nav-link" href="/guides/">Guides</a><a class="nav-link" href="/tools/" aria-current="page">Tools</a><a class="nav-link" href="/about/">About</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn-primary header-cta" href="/framework/">Start here</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span data-icon-open><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span>
+        <span data-icon-close hidden><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></span>
+      </button>
+    </div>
+  </div>
+</header>
+<main id="main">
+
+<section class="section">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/tools/">Tools</a></li><li><span aria-current="page">Rent vs buy</span></li></ol></nav>
+    <div class="section-head mt-2">
+      <p class="eyebrow">Layer 2 · Motive</p>
+      <h1 class="section-title display">Rent or buy, over your horizon</h1>
+      <p class="section-sub">At gross yields of 1.4–2% in the major cities, renting is not the financially irrational choice it is often presented as. Model your own numbers before anyone models them for you.</p>
+    </div>
+    <div class="tool-shell">
+      <div class="calc" data-calc="rentbuy">
+        <div class="calc-row">
+          <div class="field">
+            <label for="r-price">Purchase price (¥)</label>
+            <input id="r-price" type="number" data-in="price" value="10000000" step="100000">
+          </div>
+          <div class="field">
+            <label for="r-rent">Comparable monthly rent (¥)</label>
+            <input id="r-rent" type="number" data-in="rent" value="12000" step="500">
+          </div>
+          <div class="field">
+            <label for="r-down">Down payment (%)</label>
+            <input id="r-down" type="number" data-in="down" value="40" min="10" max="100" step="5">
+          </div>
+          <div class="field">
+            <label for="r-rate">Mortgage rate (%)</label>
+            <input id="r-rate" type="number" data-in="rate" value="3.2" min="0" max="10" step="0.1">
+          </div>
+          <div class="field">
+            <label for="r-years">Your horizon (years)</label>
+            <input id="r-years" type="number" data-in="years" value="7" min="1" max="30" step="1">
+          </div>
+          <div class="field">
+            <label for="r-growth">Annual price growth (%)</label>
+            <input id="r-growth" type="number" data-in="growth" value="0" min="-10" max="10" step="0.5">
+          </div>
+        </div>
+        <div class="calc-out">
+          <div class="calc-total">
+            <span>Net worth difference at year <span data-out="horizon">7</span></span>
+            <strong data-out="delta">—</strong>
+          </div>
+          <ul class="calc-breakdown">
+            <li><span>Buying: cash out over the period</span><b data-out="buyOut">—</b></li>
+            <li><span>Buying: equity if you sell</span><b data-out="buyEquity">—</b></li>
+            <li><span>Renting: rent paid over the period</span><b data-out="rentPaid">—</b></li>
+            <li><span>Renting: deposit invested at 4%</span><b data-out="rentInvest">—</b></li>
+            <li class="calc-sum"><span>Verdict</span><b data-out="verdict">—</b></li>
+          </ul>
+          <p class="calc-note" data-out="note"></p>
+        </div>
+      </div>
+      <aside class="calc-aside">
+        <div class="card">
+          <p class="eyebrow">What this model assumes</p>
+          <ul class="risk-list">
+            <li>25-year amortising mortgage, no early repayment</li>
+            <li>Round-trip transaction cost of 8% on purchase and sale</li>
+            <li>Rent grows 3% a year; a 40% down payment is invested at 4% if you rent</li>
+            <li>No tax on the invested deposit, no maintenance, no vacancy</li>
+          </ul>
+          <p class="calc-note">The assumptions are deliberately plain. Change them to match your own situation — the conclusion should be robust to the ones you are unsure about.</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-sky" aria-hidden="true"><svg class="skyline skyline-wide" viewBox="0 0 1400 120" preserveAspectRatio="none" fill="#d98a3a" opacity="0.1" aria-hidden="true" focusable="false"><rect x="0" y="72" width="32" height="48"/><rect x="34" y="90" width="33" height="30"/><rect x="69" y="42" width="19" height="78"/><rect x="89" y="93" width="30" height="27"/><rect x="103" y="79" width="2" height="14"/><rect x="122" y="38" width="29" height="82"/><rect x="128" y="29" width="16" height="9"/><rect x="152" y="63" width="26" height="57"/><rect x="179" y="51" width="25" height="69"/><rect x="205" y="41" width="22" height="79"/><rect x="210" y="32" width="12" height="9"/><rect x="229" y="35" width="16" height="85"/><rect x="246" y="71" width="17" height="49"/><path d="M246 71 L254 60 L263 71 Z"/><rect x="264" y="57" width="29" height="63"/><path d="M264 57 L278 43 L293 57 Z"/><rect x="295" y="17" width="31" height="103"/><path d="M295 17 L310 0 L326 17 Z"/><rect x="328" y="89" width="31" height="31"/><rect x="364" y="49" width="19" height="71"/><path d="M364 49 L374 33 L383 49 Z"/><rect x="388" y="39" width="20" height="81"/><rect x="409" y="88" width="15" height="32"/><rect x="425" y="55" width="13" height="65"/><rect x="440" y="32" width="16" height="88"/><rect x="444" y="23" width="9" height="9"/><rect x="459" y="37" width="26" height="83"/><rect x="488" y="62" width="26" height="58"/><rect x="515" y="12" width="13" height="108"/><rect x="530" y="37" width="19" height="83"/><rect x="534" y="28" width="11" height="9"/><rect x="551" y="27" width="26" height="93"/><rect x="579" y="26" width="18" height="94"/><rect x="583" y="17" width="10" height="9"/><rect x="598" y="14" width="21" height="106"/><rect x="620" y="51" width="14" height="69"/><rect x="626" y="37" width="2" height="14"/><rect x="636" y="65" width="33" height="55"/><rect x="674" y="93" width="19" height="27"/><path d="M674 93 L684 87 L693 93 Z"/><rect x="698" y="24" width="33" height="96"/><rect x="714" y="10" width="2" height="14"/><rect x="733" y="77" width="20" height="43"/><rect x="755" y="82" width="20" height="38"/><rect x="760" y="73" width="11" height="9"/><rect x="777" y="33" width="19" height="87"/><rect x="786" y="19" width="2" height="14"/><rect x="799" y="83" width="18" height="37"/><rect x="819" y="43" width="14" height="77"/><rect x="825" y="29" width="2" height="14"/><rect x="835" y="9" width="26" height="111"/><rect x="863" y="81" width="15" height="39"/><path d="M863 81 L870 72 L878 81 Z"/><rect x="880" y="60" width="32" height="60"/><rect x="914" y="89" width="18" height="31"/><rect x="922" y="75" width="2" height="14"/><rect x="934" y="82" width="33" height="38"/><rect x="969" y="78" width="26" height="42"/><rect x="1000" y="58" width="24" height="62"/><rect x="1025" y="36" width="13" height="84"/><rect x="1039" y="40" width="29" height="80"/><rect x="1073" y="32" width="14" height="88"/><path d="M1073 32 L1080 13 L1087 32 Z"/><rect x="1092" y="72" width="26" height="48"/><rect x="1119" y="91" width="32" height="29"/><rect x="1153" y="91" width="29" height="29"/><rect x="1187" y="38" width="26" height="82"/><rect x="1214" y="81" width="31" height="39"/><rect x="1247" y="76" width="19" height="44"/><rect x="1269" y="62" width="22" height="58"/><rect x="1293" y="58" width="32" height="62"/><rect x="1326" y="20" width="23" height="100"/><rect x="1351" y="63" width="28" height="57"/><rect x="1381" y="93" width="19.0" height="27"/></svg></div>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand brand-light" href="/">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="16" cy="17" r="13" fill="currentColor" opacity=".08"/><rect x="13" y="1.5" width="6" height="2.6" rx="1.3" fill="currentColor"/><path d="M16 4v2.4" stroke="currentColor" stroke-width="1.6"/><rect x="7.5" y="6.4" width="17" height="4" rx="2" fill="currentColor" opacity=".9"/><path d="M9.6 10.4h12.8c1.1 3.4 1.1 12.2 0 15.2H9.6c-1.1-3-1.1-11.8 0-15.2z" fill="var(--amber)"/><rect x="14.4" y="12.6" width="3.2" height="11" rx="1.6" fill="#fff" opacity=".75"/><rect x="7.8" y="25.7" width="16.4" height="2.6" rx="1.3" fill="currentColor"/></svg>
+          <span class="brand-text">
+            <span class="brand-name">Lifetourchina</span>
+            <span class="brand-sub">Realty</span>
+          </span>
+        </a>
+        <p class="footer-blurb">China property, made clear. A free, independent guide that helps foreigners decide whether to buy property in China — and how to check it themselves.</p>
+        <p class="pledge"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3 5 6v6c0 4.5 3 7.7 7 9 4-1.3 7-4.5 7-9V6l-7-3z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg><span>No advertising. No commissions. No accounts. No forms. This site collects nothing about you and sells nothing to anyone.</span></p>
+      </div>
+      <div class="footer-col"><h2 class="footer-head">The framework</h2><ul><li><a href="/framework/">Overview</a></li><li><a href="/framework/eligibility/">1. Eligibility</a></li><li><a href="/framework/motive/">2. Motive</a></li><li><a href="/framework/city/">3. City</a></li><li><a href="/framework/asset/">4. Asset</a></li><li><a href="/framework/closing/">5. Closing</a></li></ul></div><div class="footer-col"><h2 class="footer-head">Explore</h2><ul><li><a href="/cities/">Cities</a></li><li><a href="/guides/">Guides</a></li><li><a href="/tools/">Tools</a></li><li><a href="/verify/">How to verify</a></li></ul></div><div class="footer-col"><h2 class="footer-head">About</h2><ul><li><a href="/about/">What this is</a></li><li><a href="/faq/">Questions</a></li><li><a href="/legal/disclaimer/">Disclaimer</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Lifetourchina Realty. An independent editorial project. Written and maintained by Maya Chen.</p>
+      <p class="footer-disclosure">General information only — not legal, tax or investment advice. <a href="/legal/disclaimer/">Read the disclaimer</a>.</p>
+    </div>
+  </div>
+</footer>
+<script src="/js/main.js" defer></script>
+<script src="/js/calc.js" defer></script>
+</body>
+</html>

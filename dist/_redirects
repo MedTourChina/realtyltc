@@ -1,0 +1,4 @@
+# Legacy paths from the pre-launch structure
+/services/*  /framework/  301
+/listings/*  /cities/     301
+/contact/    /about/      301

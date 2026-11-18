@@ -1,5 +1,13 @@
-# Build output
-dist/
+# NOTE: dist/ is deliberately committed.
+#
+# Cloudflare Pages is connected through Git integration with no build command,
+# so the deployed site is whatever is in dist/. If you edit anything under
+# content/ or sitegen/, run `python build.py` and commit dist/ as well —
+# otherwise the live site keeps serving the previous build.
+#
+# (To switch to a build-on-deploy flow instead: delete dist/ from git, set the
+# Pages build command to `python build.py`, and re-add the line below.)
+# dist/
 
 # Local screenshots and scratch files
 shots/
