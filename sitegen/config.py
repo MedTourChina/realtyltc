@@ -7,7 +7,11 @@ configuration should imply otherwise.
 
 from __future__ import annotations
 
-SITE_NAME = "Lantern"
+SITE_NAME = "Lifetourchina Realty"
+# The masthead is set on two lines, matching the social card. SITE_NAME is the
+# single string used in <title>, copyright and structured data.
+BRAND_LINE_1 = "Lifetourchina"
+BRAND_LINE_2 = "Realty"
 SITE_TAGLINE = "China property, made clear."
 SITE_DESCRIPTION = (
     "A free, independent framework for foreigners buying property in China — "

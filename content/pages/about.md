@@ -7,7 +7,7 @@ crumbs: [["Home", "/"], ["About", null]]
 ---
 
 :::answer
-Lantern is a free, independent, English-language explanation of how property purchase works in China for foreign nationals — organised as a five-layer decision framework rather than as a listing site, a blog or a lead generator. There is no company behind it, nothing is sold, and nothing is collected about you.
+Lifetourchina Realty is a free, independent, English-language explanation of how property purchase works in China for foreign nationals — organised as a five-layer decision framework rather than as a listing site, a blog or a lead generator. There is no company behind it, nothing is sold, and nothing is collected about you.
 :::
 
 ## The problem it answers

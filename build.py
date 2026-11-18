@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the Lantern static site.
+"""Build the Lifetourchina Realty static site.
 
     python build.py            # write to dist/
     python build.py --serve    # build, then serve dist/ on localhost:8080
@@ -210,7 +210,7 @@ def make_og_image() -> bool:
     for x, y, w, h in skyline:
         d.rectangle([x + 12, y + 58, x + 12 + w, H], fill=(26, 34, 58))
 
-    # lantern mark
+    # brand mark
     cx = 92
     d.rounded_rectangle([cx - 8, 96, cx + 8, 102], radius=3, fill=paper)
     d.rounded_rectangle([cx - 26, 112, cx + 26, 122], radius=5, fill=paper)
@@ -218,19 +218,29 @@ def make_og_image() -> bool:
     d.rounded_rectangle([cx - 4, 138, cx + 4, 200], radius=4, fill=(255, 250, 244))
     d.rounded_rectangle([cx - 24, 216, cx + 24, 226], radius=5, fill=paper)
 
-    f_kicker = ImageFont.truetype(str(sans), 26)
     f_title = ImageFont.truetype(str(serif), 78)
     f_sub = ImageFont.truetype(str(sans), 30)
     f_small = ImageFont.truetype(str(sans), 24)
 
-    d.text((160, 104), "L A N T E R N", font=f_kicker, fill=(250, 248, 244))
-    d.text((160, 158), "Before you look at", font=f_title, fill=(250, 248, 244))
-    d.text((160, 244), "a single apartment", font=f_title, fill=(250, 248, 244))
-    d.text((160, 330), "in China.", font=f_title, fill=amber)
+    def tracked(xy, text, font, fill, tracking):
+        """Draw letter-spaced text; Pillow has no tracking option."""
+        x, y = xy
+        for ch in text:
+            d.text((x, y), ch, font=font, fill=fill)
+            x += d.textlength(ch, font=font) + tracking
 
-    d.text((160, 452), "Five decisions before the price — and how to check each one.",
+    tracked((160, 100), "LIFETOURCHINA", ImageFont.truetype(str(sans), 23),
+            (250, 248, 244), 5.2)
+    tracked((160, 130), "REALTY", ImageFont.truetype(str(sans), 23),
+            (217, 138, 58), 5.2)
+
+    d.text((160, 176), "Before you look at", font=f_title, fill=(250, 248, 244))
+    d.text((160, 258), "a single apartment", font=f_title, fill=(250, 248, 244))
+    d.text((160, 340), "in China.", font=f_title, fill=amber)
+
+    d.text((160, 462), "Five decisions before the price — and how to check each one.",
            font=f_sub, fill=(196, 198, 206))
-    d.text((160, 500), "Free · independent · no advertising · no data collected",
+    d.text((160, 508), "Free · independent · no advertising · no data collected",
            font=f_small, fill=(150, 152, 162))
 
     (STATIC / "img").mkdir(parents=True, exist_ok=True)

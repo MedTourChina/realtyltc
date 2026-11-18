@@ -59,8 +59,8 @@ def site_header(nav_active: str | None = None) -> str:
     <a class="brand" href="/" aria-label="{C.SITE_NAME} — home">
       {svg.BRAND_MARK}
       <span class="brand-text">
-        <span class="brand-name">{C.SITE_NAME}</span>
-        <span class="brand-sub">China property</span>
+        <span class="brand-name">{C.BRAND_LINE_1}</span>
+        <span class="brand-sub">{C.BRAND_LINE_2}</span>
       </span>
     </a>
     <nav class="main-nav" id="site-nav" aria-label="Primary">
@@ -92,8 +92,8 @@ def site_footer() -> str:
         <a class="brand brand-light" href="/">
           {svg.BRAND_MARK}
           <span class="brand-text">
-            <span class="brand-name">{C.SITE_NAME}</span>
-            <span class="brand-sub">China property</span>
+            <span class="brand-name">{C.BRAND_LINE_1}</span>
+            <span class="brand-sub">{C.BRAND_LINE_2}</span>
           </span>
         </a>
         <p class="footer-blurb">{C.SITE_TAGLINE} A free, independent guide that helps foreigners decide whether to buy property in China — and how to check it themselves.</p>
