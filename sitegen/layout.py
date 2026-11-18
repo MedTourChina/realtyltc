@@ -157,7 +157,7 @@ def page(
 <meta name="theme-color" content="#12192b">
 <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/img/favicon.svg">
-<link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="/css/site.css?v={C.ASSET_V}">
 {schemas}</head>
 <body class="{body_class}">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -166,7 +166,7 @@ def page(
 {body}
 </main>
 {site_footer()}
-<script src="/js/main.js" defer></script>
+<script src="/js/main.js?v={C.ASSET_V}" defer></script>
 {extra_scripts}
 </body>
 </html>

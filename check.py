@@ -17,13 +17,16 @@ from sitegen import config as C
 DIST = Path(__file__).resolve().parent / "dist"
 SITE_HOST = C.SITE_URL.split("//", 1)[-1]
 
-HREF = re.compile(r'(?:href|src)="(/[^"#?]*)"')
+HREF = re.compile(r'(?:href|src)="(/[^"#]*)"')
 ANCHOR = re.compile(r'href="/[^"#?]*#([^"]+)"')
 ID = re.compile(r'\sid="([^"]+)"')
 
 
 def target_file(url_path: str) -> Path:
+    url_path = url_path.split("?", 1)[0]  # ignore cache-busting query strings
     rel = url_path.lstrip("/")
+    if not rel:
+        return DIST / "index.html"
     if url_path.endswith("/"):
         rel += "index.html"
     return DIST / rel

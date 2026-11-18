@@ -20,6 +20,11 @@ SITE_DESCRIPTION = (
 
 SITE_URL = "https://realty.lifetourchina.com"
 
+# Set at build time to a short hash of the CSS/JS bundle. Appended to asset
+# URLs so the immutable cache in _headers can never serve a stale stylesheet
+# after a redesign.
+ASSET_V = ""
+
 # Corrections only. There is no sales inbox, because there is no sales.
 CORRECTIONS_EMAIL = "notes@lifetourchina.com"
 

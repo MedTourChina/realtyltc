@@ -290,7 +290,7 @@ def eligibility_tool(cities: list[dict]) -> str:
         body=body,
         nav_active="Tools",
         body_class="page-tool",
-        extra_scripts='<script src="/js/calc.js" defer></script>',
+        extra_scripts=f'<script src="/js/calc.js?v={C.ASSET_V}" defer></script>',
         jsonld=[breadcrumb_ld([("Home", "/"), ("Tools", "/tools/"), ("Eligibility", "/tools/eligibility/")])],
     )
 
@@ -383,7 +383,7 @@ def cost_tool(cities: list[dict]) -> str:
         body=body,
         nav_active="Tools",
         body_class="page-tool",
-        extra_scripts='<script src="/js/calc.js" defer></script>',
+        extra_scripts=f'<script src="/js/calc.js?v={C.ASSET_V}" defer></script>',
         jsonld=[breadcrumb_ld([("Home", "/"), ("Tools", "/tools/"), ("Purchase cost", "/tools/purchase-cost/")])],
     )
 
@@ -464,7 +464,7 @@ def rentbuy_tool() -> str:
         body=body,
         nav_active="Tools",
         body_class="page-tool",
-        extra_scripts='<script src="/js/calc.js" defer></script>',
+        extra_scripts=f'<script src="/js/calc.js?v={C.ASSET_V}" defer></script>',
         jsonld=[breadcrumb_ld([("Home", "/"), ("Tools", "/tools/"), ("Rent vs buy", "/tools/rent-vs-buy/")])],
     )
 

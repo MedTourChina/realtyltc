@@ -250,9 +250,21 @@ def make_og_image() -> bool:
 
 # ------------------------------------------------------------------- builder
 
+def asset_version() -> str:
+    """Short hash of the CSS/JS bundle, used to bust the immutable cache."""
+    import hashlib
+
+    digest = hashlib.sha1()
+    for path in sorted(list((STATIC / "css").glob("*")) + list((STATIC / "js").glob("*"))):
+        digest.update(path.read_bytes())
+    return digest.hexdigest()[:8]
+
+
 def build() -> None:
     if DIST.exists():
         shutil.rmtree(DIST)
+
+    C.ASSET_V = asset_version()
 
     cities = load_json("cities.json")
     faq = load_json("faq.json")
