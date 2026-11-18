@@ -151,7 +151,8 @@ def render(md: str) -> str:
             level = len(stripped) - len(stripped.lstrip("#"))
             text = stripped[level:].strip()
             if 1 <= level <= 4 and text:
-                tag = f"h{min(level + 1, 4)}"  # page title owns h1
+                # The page title owns <h1>, so map # and ## to h2, then 3 and 4.
+                tag = f"h{min(max(level, 2), 4)}"
                 hid = slugify(text)
                 out.append(f'<{tag} id="{hid}">{inline(text)}</{tag}>')
                 i += 1

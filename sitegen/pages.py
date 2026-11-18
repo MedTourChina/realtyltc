@@ -324,7 +324,7 @@ def city_page(city: dict, cities: list[dict], guides: list[dict]) -> str:
   <div class="wrap city-hero-inner">
     <div>
       {L.crumbs([('Home', '/'), ('Cities', '/cities/'), (city['name'], None)])}
-      <h1 class="city-hero-title mt-2">{L.esc(city['name'])}<span class="city-hero-zh">{L.esc(city['name_zh'])} · {L.esc(city['pinyin'])}</span></h1>
+      <h1 class="city-hero-title mt-2">{L.esc(city['name'])}<span class="city-hero-zh">{L.esc(city['name_zh'])}</span></h1>
       <p class="city-hero-sub">{L.esc(city['tagline'])}</p>
     </div>
     <dl class="city-facts">

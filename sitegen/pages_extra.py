@@ -485,8 +485,7 @@ def content_page(post: dict, *, nav_active: str | None = None) -> str:
     <p class="article-standfirst">{L.esc(post['description'])}</p>
   </div>
 </header>
-<div class="wrap article-layout">
-  <aside class="article-aside"></aside>
+<div class="wrap article-layout article-layout-content">
   <div class="prose">{body_html}</div>
   <aside class="article-aside">{toc_html}</aside>
 </div>"""
