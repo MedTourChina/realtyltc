@@ -119,72 +119,71 @@ related: the-one-year-rule, escrow-and-payment-stages
 
 ---
 
-## 四、发布到 GitHub + Cloudflare Pages
+## 四、部署(GitHub + Cloudflare Pages)
 
-**仓库已经建好并推送完成:https://github.com/MedTourChina/realtyltc**
+**仓库:https://github.com/MedTourChina/realtyltc**
 
-### 当前状态
+### 当前实际配置
+
+Cloudflare Pages 通过 **Git 集成**连接仓库,构建命令留空,直接发布仓库里的 `dist/`。
 
 | 环节 | 状态 |
 |---|---|
-| GitHub 仓库 + 代码推送 | ✅ 已完成 |
-| CI 构建与自检(`verify` 任务) | ✅ 每次推送自动跑 |
-| Cloudflare Pages 部署 | ⏸ 开关默认关闭,等你绑定 |
+| GitHub 仓库 | ✅ |
+| Pages 连仓库(Git 集成) | ✅ |
+| 构建命令 | 空(不做构建,直接取 `dist/`) |
+| 输出目录 | `dist`(来自 `wrangler.toml` 的 `pages_build_output_dir`) |
+| `dist/` 是否入库 | ✅ 已提交,共 51 个文件 |
+| GitHub Actions | 只跑构建与自检,不发布 |
 
-Cloudflare 那一步没配之前,`deploy` 任务会被跳过(不是失败),所以仓库不会挂红叉。这是由 `.github/workflows/deploy.yml` 里的 `if: vars.CLOUDFLARE_PAGES_READY == 'true'` 控制的。
+### ⚠️ 最重要的一条:改内容必须重新构建
 
-### 你回来之后要做的三步
+因为 Cloudflare **不做构建**,线上就是仓库里的 `dist/`。所以:
 
-**第 1 步:在 Cloudflare 建一个同名空项目**
-
-控制台 → *Workers & Pages* → *Create* → *Pages* → **Upload assets**(Direct Upload)→ 项目名填 `realtyltc` → 建好即可,不用真的上传文件。
-
-> 这一步不能省。`wrangler pages deploy` 在非交互环境(CI)里不会自动创建项目,项目不存在会直接失败。
-
-**第 2 步:拿两个值**
-
-1. **API Token**:Cloudflare 控制台 → 右上头像 → *My Profile* → *API Tokens* → *Create Token* → 用 **Edit Cloudflare Workers** 模板,或自定义:权限 `Account · Cloudflare Pages · Edit`,资源限定到你的账号。
-2. **Account ID**:控制台 → *Workers & Pages* → 概览页右侧可见。
-
-**第 3 步:配置并打开开关**
-
-仓库 → *Settings* → *Secrets and variables* → *Actions*:
-
-1. 在 **Secrets** 里加两个:`CLOUDFLARE_API_TOKEN`、`CLOUDFLARE_ACCOUNT_ID`
-2. 在 **Variables** 里加一个:`CLOUDFLARE_PAGES_READY` = `true` ← **这个变量一存,下次推送就会真的部署**
-
-然后推任意 commit(或到 *Actions* 页点 *Run workflow*),拿到 `https://realtyltc.pages.dev`。
-
-### 完整流程概览
-
-推 `main` → `verify` 任务构建 + 自检 → `deploy` 任务(开关打开时)发布到 Cloudflare Pages。
-
-`wrangler.toml` 里的 `name` 要和工作流里的 `--project-name` 保持一致(现在两处都是 `realtyltc`)。
-
-### 路线 B(备选):零 Secret,直接把 dist 提交上去
-
-不想配 token、不想依赖 CI 时用这条。
-
-```bash
-# 1. 允许提交构建产物
-#    编辑 .gitignore,删掉 "dist/" 这一行
-
-# 2. 本地构建并提交
-python build.py
-git add dist && git commit -m "build: publish dist"
-git push
+```
+改了 content/ 或 sitegen/ 里的东西
+        ↓
+python build.py          ← 必须,否则线上还是旧版本
+        ↓
+git add -A && git commit -m "content: ..." && git push
 ```
 
-然后 Cloudflare 控制台 → *Workers & Pages* → *Create* → *Pages* → *Connect to Git* → 选仓库,设置:
+一条命令搞定:
 
-| 设置项 | 值 |
-|---|---|
-| Framework preset | `None` |
-| Build command | 留空 |
-| Build output directory | `dist` |
+```bash
+python build.py && git add -A && git commit -m "build: publish" && git push
+```
 
-优点:不用 API Token、不依赖 CI、不存在构建环境差异。
-缺点:每次改内容都要本地 `python build.py` 后再提交。
+**如果只在 GitHub 网页上改了 `.md` 而没重新构建,网站不会变。** 这是这套配置唯一的坑。
+
+### 之前那次失败的原因
+
+```
+No build command specified. Skipping build step.
+Error: Output directory "dist" not found.
+```
+
+Pages 读到 `wrangler.toml` 说"产物在 dist",但没有构建命令,于是去仓库里找 `dist` —— 当时 `.gitignore` 把 `dist/` 排除了(我原设计是走 GitHub Actions 构建 + 直传)。现在已改为把 `dist/` 提交进仓库,这个错不会再出现。
+
+### 备选:让 Cloudflare 自己构建(不用提交 dist)
+
+如果你更希望"改完直接推,Cloudflare 自动构建":
+
+1. Pages 项目 → *Settings* → *Build configuration* → 把 **Build command** 设为 `python build.py`,输出目录保持 `dist`
+2. 从仓库移除 `dist/`:`git rm -r --cached dist`,并把 `.gitignore` 里 `# dist/` 那行的注释恢复
+3. 推一次
+
+⚠️ 前提是 Cloudflare 构建镜像里带 Python 3 且版本 ≥ 3.7。**这一点我没法在这里验证**,而当前"提交 dist"的方案不依赖任何构建环境,所以我默认选了它。
+
+### 备选二:GitHub Actions 构建后直传
+
+仓库里的 `.github/workflows/deploy.yml` 已经写好,受一个开关控制:
+
+1. Cloudflare → *Workers & Pages* → *Create* → *Pages* → **Upload assets**,建一个名为 `realtyltc` 的空项目
+2. 仓库 *Settings* → *Secrets and variables* → *Actions*:加 `CLOUDFLARE_API_TOKEN`、`CLOUDFLARE_ACCOUNT_ID`
+3. 同一页面的 **Variables**:加 `CLOUDFLARE_PAGES_READY` = `true`
+
+变量一存,下次推送就会真的走 Actions 部署。注意:**不要和 Git 集成同时生效**,两条路一起开会互相覆盖。
 
 ### 绑定域名 realty.lifetourchina.com
 
