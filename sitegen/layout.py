@@ -259,6 +259,46 @@ def layer_card(layer: dict) -> str:
 </a>"""
 
 
+def tool_strip(layer_n: int, title: str = "What to do next") -> str:
+    """The step that follows a framework chapter: a tool, or the checklist."""
+    items = C.LAYER_TOOLS.get(layer_n, [])
+    if not items:
+        return ""
+    cards = "".join(
+        f"""
+    <a class="step-card" href="{href}">
+      <span class="step-card-title">{esc(label)}<span class="step-card-arrow">{svg.icon('arrow', 15)}</span></span>
+      <span class="step-card-reason">{esc(reason)}</span>
+    </a>"""
+        for label, href, reason in items
+    )
+    return f"""
+<aside class="tool-strip">
+  <p class="tool-strip-label">{esc(title)}</p>
+  <div class="tool-strip-grid">{cards}</div>
+</aside>"""
+
+
+def next_step(layer_n: int) -> str:
+    """Closing block for a guide: where the reader goes after reading."""
+    items = C.LAYER_TOOLS.get(layer_n, [])
+    links = "".join(
+        f'<li><a href="{href}">{esc(label)}</a> <span>{esc(reason)}</span></li>'
+        for label, href, reason in items
+    )
+    sheet = (
+        '<li><a href="/framework/decision-sheet/">Open the decision sheet</a> '
+        "<span>Twenty-five checks and fifteen stop conditions, in order.</span></li>"
+        if layer_n != 4 and layer_n != 5
+        else ""
+    )
+    return f"""
+<aside class="next-step">
+  <p class="next-step-label">Your next step</p>
+  <ul class="next-step-list">{links}{sheet}</ul>
+</aside>"""
+
+
 def flow(steps: list[tuple[str, str]]) -> str:
     """Horizontal decision flow: label, caption."""
     parts = []

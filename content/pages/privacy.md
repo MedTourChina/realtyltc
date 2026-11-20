@@ -18,7 +18,9 @@ There is no form on this site to submit, so there is no information to receive. 
 
 ## Cookies and local storage
 
-None are set by this site. The three calculators run entirely in your browser using JavaScript; their inputs are not stored and are discarded when you close the tab.
+No cookies are set by this site. The three calculators run entirely in your browser using JavaScript; their inputs are not stored anywhere and are discarded when you close the tab.
+
+The decision sheet is the one exception, and it uses local storage rather than a cookie. Ticking a box writes that box's identifier into your browser's `localStorage` under the key `ltc-decision-sheet-v1`, so your progress survives a refresh or a closed tab. That record never leaves your browser: there is no server here to receive it, no account to attach it to, and no script from another domain that could read it. Pressing "Reset" on the page, or clearing site data in your browser, deletes it.
 
 ## Third-party requests
 

@@ -89,7 +89,7 @@ FOOTER_NAV = [
         "The framework",
         [("Overview", "/framework/")] + [
             (f"{l['n']}. {l['name']}", f"/framework/{l['slug']}/") for l in LAYERS
-        ],
+        ] + [("Decision sheet", "/framework/decision-sheet/")],
     ),
     (
         "Explore",
@@ -97,6 +97,7 @@ FOOTER_NAV = [
             ("Cities", "/cities/"),
             ("Guides", "/guides/"),
             ("Tools", "/tools/"),
+            ("Glossary", "/glossary/"),
             ("How to verify", "/verify/"),
         ],
     ),
@@ -109,6 +110,47 @@ FOOTER_NAV = [
         ],
     ),
 ]
+
+# What to do next, per layer. A framework that dead-ends is a lecture.
+# Each entry: (label, href, one-line reason)
+LAYER_TOOLS = {
+    1: [
+        ("Check your eligibility", "/tools/eligibility/",
+         "Five questions, an indicative verdict, and the documents each answer depends on."),
+        ("Read the one-year rule", "/guides/the-one-year-rule/",
+         "What counts as a year of work or study, and what does not."),
+    ],
+    2: [
+        ("Work out the full cost", "/tools/purchase-cost/",
+         "Deed tax, commission, and the seller's taxes that land on you."),
+        ("Compare renting and buying", "/tools/rent-vs-buy/",
+         "Net worth over your own horizon, not over an assumed one."),
+    ],
+    3: [
+        ("Compare twelve cities", "/cities/",
+         "One set of dimensions, so the comparison means something."),
+        ("Read how to choose a district", "/guides/choosing-where-to-live/",
+         "The school, the commute and the resale pool decide more than the building does."),
+        ("Cost one city against another", "/tools/rent-vs-buy/",
+         "The same flat, the same horizon, priced in two different markets."),
+    ],
+    4: [
+        ("Read the land-term guide", "/guides/seventy-fifty-forty-year-land-use/",
+         "Why a 40-year unit is a different asset, not an older one."),
+        ("Price the 140m² line", "/tools/purchase-cost/",
+         "Where the deed tax steps, and what a unit either side of it costs."),
+        ("Open the decision sheet", "/framework/decision-sheet/",
+         "All five layers as a checklist you can print and tick."),
+    ],
+    5: [
+        ("How to verify in person", "/verify/",
+         "The exact wording for the counter, and what a good answer sounds like."),
+        ("Read the due-diligence checklist", "/guides/due-diligence-checklist/",
+         "Eleven documents, and what each one proves."),
+        ("Add up what closing costs", "/tools/purchase-cost/",
+         "Taxes, commission and fees, as one number before you commit."),
+    ],
+}
 
 # Shown on every page footer. It is the whole business model.
 PLEDGE = (

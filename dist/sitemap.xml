@@ -7,6 +7,8 @@
   <url><loc>https://realty.lifetourchina.com/framework/city/</loc><lastmod>2026-03-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://realty.lifetourchina.com/framework/asset/</loc><lastmod>2026-03-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://realty.lifetourchina.com/framework/closing/</loc><lastmod>2026-03-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://realty.lifetourchina.com/framework/decision-sheet/</loc><lastmod>2026-03-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://realty.lifetourchina.com/glossary/</loc><lastmod>2026-03-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://realty.lifetourchina.com/cities/</loc><lastmod>2026-03-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://realty.lifetourchina.com/cities/shanghai/</loc><lastmod>2026-03-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://realty.lifetourchina.com/cities/beijing/</loc><lastmod>2026-03-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
@@ -30,7 +32,11 @@
   <url><loc>https://realty.lifetourchina.com/guides/the-full-cost-of-buying-a-home-in-china/</loc><lastmod>2026-03-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://realty.lifetourchina.com/guides/escrow-and-payment-stages/</loc><lastmod>2026-02-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://realty.lifetourchina.com/guides/buying-off-plan-vs-resale/</loc><lastmod>2026-02-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://realty.lifetourchina.com/guides/due-diligence-checklist/</loc><lastmod>2026-03-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://realty.lifetourchina.com/guides/purchase-timeline/</loc><lastmod>2026-03-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://realty.lifetourchina.com/guides/choosing-where-to-live/</loc><lastmod>2026-03-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://realty.lifetourchina.com/guides/renting-in-china-as-a-foreigner/</loc><lastmod>2026-03-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://realty.lifetourchina.com/guides/exit-and-repatriation/</loc><lastmod>2026-03-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://realty.lifetourchina.com/tools/</loc><lastmod>2026-03-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://realty.lifetourchina.com/tools/eligibility/</loc><lastmod>2026-03-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://realty.lifetourchina.com/tools/purchase-cost/</loc><lastmod>2026-03-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
@@ -41,5 +47,5 @@
   <url><loc>https://realty.lifetourchina.com/legal/terms/</loc><lastmod>2026-01-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://realty.lifetourchina.com/verify/</loc><lastmod>2026-01-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://realty.lifetourchina.com/faq/</loc><lastmod>2026-03-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-<!-- generated 2026-11-19 -->
+<!-- generated 2026-11-20 -->
 </urlset>

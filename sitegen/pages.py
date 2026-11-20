@@ -388,6 +388,30 @@ def city_page(city: dict, cities: list[dict], guides: list[dict]) -> str:
   </div>
 </section>
 
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Numbers, not impressions</p>
+      <h2 class="section-title">Put {L.esc(city['name'])} into the calculators</h2>
+      <p class="section-sub">Select {L.esc(city['name'])} in each tool, then replace its defaults with what a local agent and a local bank actually quote you. The defaults are national; the differences are local.</p>
+    </div>
+    <div class="tool-strip-grid">
+      <a class="step-card" href="/tools/eligibility/">
+        <span class="step-card-title">Can a foreigner buy here?<span class="step-card-arrow">{svg.icon('arrow', 15)}</span></span>
+        <span class="step-card-reason">Five questions, including the year of work or study this city requires.</span>
+      </a>
+      <a class="step-card" href="/tools/purchase-cost/">
+        <span class="step-card-title">What the whole thing costs<span class="step-card-arrow">{svg.icon('arrow', 15)}</span></span>
+        <span class="step-card-reason">Deed tax at this price band, plus commission and the seller's taxes.</span>
+      </a>
+      <a class="step-card" href="/tools/rent-vs-buy/">
+        <span class="step-card-title">Rent or buy in this city<span class="step-card-arrow">{svg.icon('arrow', 15)}</span></span>
+        <span class="step-card-reason">Uses local yields, so the answer changes when the city changes.</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <section class="section section-alt">
   <div class="wrap">
     <div class="section-head">
@@ -410,6 +434,7 @@ def city_page(city: dict, cities: list[dict], guides: list[dict]) -> str:
         <a href="/framework/motive/">02 · Should you buy →</a>
         <a href="/framework/asset/">04 · Which property →</a>
         <a href="/framework/closing/">05 · How to close →</a>
+        <a href="/framework/decision-sheet/">Open the decision sheet →</a>
       </div>
     </div>
   </div>
@@ -511,6 +536,8 @@ def guide_page(post: dict, related: list[dict]) -> str:
         {svg.icon('arrow', 16)}
       </a>"""
 
+    next_html = L.next_step(int(layer)) if layer else ""
+
     body = f"""
 <article>
   <header class="article-head">
@@ -534,6 +561,7 @@ def guide_page(post: dict, related: list[dict]) -> str:
     <div class="prose">
       {answer_html}
       {body_html}
+      {next_html}
       {L.editorial_note('General information only — not legal, tax or investment advice. Rules change, and city practice varies. Confirm the position for your own file before acting.')}
     </div>
     <aside class="article-aside">

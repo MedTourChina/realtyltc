@@ -36,11 +36,15 @@ GUIDE_LAYERS = {
     "the-full-cost-of-buying-a-home-in-china": 2,
     "mortgages-for-foreign-buyers": 2,
     "property-tax-in-china": 2,
+    "exit-and-repatriation": 2,
+    "choosing-where-to-live": 3,
     "seventy-fifty-forty-year-land-use": 4,
     "buying-off-plan-vs-resale": 4,
     "escrow-and-payment-stages": 5,
     "moving-money-into-china-for-property": 5,
     "renting-in-china-as-a-foreigner": 5,
+    "purchase-timeline": 5,
+    "due-diligence-checklist": 5,
 }
 
 MONTHS = ["January", "February", "March", "April", "May", "June", "July",
@@ -288,6 +292,14 @@ def build() -> None:
         write(url_to_file(f"/framework/{ch['slug']}/"),
               pages_extra.framework_chapter(ch, prev, nxt, layer_guides))
         written.append((f"/framework/{ch['slug']}/", ch["updated"]))
+
+    # decision sheet + glossary
+    write(url_to_file("/framework/decision-sheet/"),
+          pages_extra.decision_sheet(load_json("decision-sheet.json")))
+    written.append(("/framework/decision-sheet/", "2026-03-06"))
+    write(url_to_file("/glossary/"),
+          pages_extra.glossary(load_json("glossary.json"), guides))
+    written.append(("/glossary/", "2026-03-06"))
 
     # cities
     write(url_to_file("/cities/"), pages.cities_index(cities))

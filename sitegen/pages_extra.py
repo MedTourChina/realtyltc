@@ -141,6 +141,7 @@ def framework_chapter(ch: dict, prev: dict | None, nxt: dict | None,
   <aside class="chapter-rail">{L.rail(ch['slug'])}{toc_html}</aside>
   <div class="prose">
     {body_html}
+    {L.tool_strip(ch['n'])}
   </div>
 </div>
 
@@ -216,6 +217,34 @@ def tools_index() -> str:
     )
 
 
+def _tool_epilogue(layer_n: int, links: list[tuple[str, str, str]]) -> str:
+    """A calculator that ends in a number is a dead end. Hand the reader back to
+    the reasoning the number sits inside, and to the checklist."""
+    l = C.LAYERS[layer_n - 1]
+    rows = [(f"Layer {l['n']} — {l['name']}: {l['question']}",
+             f"/framework/{l['slug']}/",
+             "The reasoning this figure sits inside.")]
+    rows += list(links)
+    rows.append(("Open the decision sheet", "/framework/decision-sheet/",
+                 "Twenty-five checks and fifteen stop conditions, on one printable page."))
+    items = "".join(
+        '<a class="step-card" href="' + href + '">'
+        '<span class="step-card-title">' + L.esc(title) + '</span>'
+        '<span class="step-card-arrow">\u2192</span>'
+        '<span class="step-card-reason">' + L.esc(reason) + '</span></a>'
+        for title, href, reason in rows
+    )
+    return (
+        '<section class="section"><div class="wrap">'
+        '<p class="eyebrow">What a calculator cannot decide</p>'
+        '<h2 class="section-title">The number is the start of the argument, not the end of it.</h2>'
+        '<p class="section-sub">This tool answers one question. The framework is where '
+        'that answer is tested against the other four.</p>'
+        '<div class="tool-strip-grid mt-2">' + items + '</div>'
+        '</div></section>'
+    )
+
+
 def eligibility_tool(cities: list[dict]) -> str:
     city_opts = "".join(f'<option value="{L.esc(c["name"])}">{L.esc(c["name"])}</option>' for c in cities)
     body = f"""
@@ -287,7 +316,10 @@ def eligibility_tool(cities: list[dict]) -> str:
         title="Can a foreigner buy? Eligibility check",
         description="Five questions that establish whether you can buy residential property in China, with the reasoning behind the verdict.",
         path="/tools/eligibility/",
-        body=body,
+        body=body + _tool_epilogue(1, [
+            ("Read the one-year rule", "/guides/the-one-year-rule/", "What counts as a year of work or study, and what does not."),
+            ("See how the twelve cities differ", "/cities/", "The same rule, administered twelve different ways."),
+        ]),
         nav_active="Tools",
         body_class="page-tool",
         extra_scripts=f'<script src="/js/calc.js?v={C.ASSET_V}" defer></script>',
@@ -380,7 +412,10 @@ def cost_tool(cities: list[dict]) -> str:
         title="Purchase cost calculator",
         description="Work out the true all-in cost of buying property in China: deed tax at the 140m² threshold, commission, notarisation, registration and seller-side taxes.",
         path="/tools/purchase-cost/",
-        body=body,
+        body=body + _tool_epilogue(2, [
+            ("Why the exit costs more than the entry", "/guides/exit-and-repatriation/", "The channel your money came in through decides whether it can leave."),
+            ("Compare renting and buying", "/tools/rent-vs-buy/", "The same flat, the same horizon, held as an asset or as a payment."),
+        ]),
         nav_active="Tools",
         body_class="page-tool",
         extra_scripts=f'<script src="/js/calc.js?v={C.ASSET_V}" defer></script>',
@@ -461,7 +496,10 @@ def rentbuy_tool() -> str:
         title="Rent vs buy calculator",
         description="Compare renting and buying property in China over your own horizon, including transaction costs and the opportunity cost of a down payment.",
         path="/tools/rent-vs-buy/",
-        body=body,
+        body=body + _tool_epilogue(2, [
+            ("Read the full cost of buying", "/guides/the-full-cost-of-buying-a-home-in-china/", "The eight to eleven percent round trip, itemised."),
+            ("Work out the purchase cost", "/tools/purchase-cost/", "Deed tax, commission and the seller's taxes."),
+        ]),
         nav_active="Tools",
         body_class="page-tool",
         extra_scripts=f'<script src="/js/calc.js?v={C.ASSET_V}" defer></script>',
@@ -470,6 +508,14 @@ def rentbuy_tool() -> str:
 
 
 # ------------------------------------------------------------- content pages
+
+def _next_step_html(post: dict) -> str:
+    """Every guide ends by handing the reader to a tool, not by trailing off."""
+    layer = post.get("layer")
+    if not layer:
+        return ""
+    return L.next_step(int(layer))
+
 
 def content_page(post: dict, *, nav_active: str | None = None) -> str:
     body_html = md.render(post["body"])
@@ -486,7 +532,7 @@ def content_page(post: dict, *, nav_active: str | None = None) -> str:
   </div>
 </header>
 <div class="wrap article-layout article-layout-content">
-  <div class="prose">{body_html}</div>
+  <div class="prose">{body_html}{_next_step_html(post)}</div>
   <aside class="article-aside">{toc_html}</aside>
 </div>"""
 
@@ -544,6 +590,183 @@ def faq_page(items: list[dict]) -> str:
         body=body,
         nav_active="About",
         jsonld=[breadcrumb_ld([("Home", "/"), ("FAQ", "/faq/")]), faq_ld],
+    )
+
+
+def decision_sheet(sheet_layers: list[dict]) -> str:
+    by_n = {l["n"]: l for l in C.LAYERS}
+    blocks = []
+
+    for entry in sheet_layers:
+        n = int(entry["layer"])
+        meta = by_n.get(n)
+        if not meta:
+            continue
+
+        checks = "".join(
+            '<li><label class="sheet-opt">'
+            f'<input type="checkbox" data-check="{L.esc(c["id"])}">'
+            '<span class="sheet-mark" aria-hidden="true"></span>'
+            f'<span class="sheet-text">{L.esc(c["text"])}</span>'
+            "</label></li>"
+            for c in entry["checks"]
+        )
+        stops = "".join(
+            '<li><label class="sheet-opt sheet-opt-stop">'
+            f'<input type="checkbox" data-stop="{L.esc(c["id"])}">'
+            '<span class="sheet-mark" aria-hidden="true"></span>'
+            f'<span class="sheet-text">{L.esc(c["text"])}</span>'
+            "</label></li>"
+            for c in entry["stops"]
+        )
+
+        tools = C.LAYER_TOOLS.get(n, [])
+        tool_links = " · ".join(f'<a href="{h}">{L.esc(lbl)}</a>' for lbl, h, _ in tools)
+        tool_html = (f'<p class="sheet-layer-tools">Work this layer out first: {tool_links}</p>'
+                     if tool_links else "")
+
+        blocks.append(f"""
+<section class="sheet-layer" data-layer="{n}" data-slug="{meta['slug']}" data-name="{L.esc(meta['name'])}">
+  <div class="sheet-layer-head">
+    <span class="sheet-layer-num">{n:02d}</span>
+    <div class="sheet-layer-title-wrap">
+      <h2 class="sheet-layer-title">{L.esc(meta['name'])}</h2>
+      <p class="sheet-layer-q">{L.esc(meta['question'])}</p>
+    </div>
+    <a class="sheet-layer-link" href="/framework/{meta['slug']}/">Read layer {n}</a>
+  </div>
+  <p class="sheet-group-label">Tick each line that is true</p>
+  <ul class="sheet-list">{checks}</ul>
+  <p class="sheet-group-label sheet-group-stop">Stop conditions — any one of these ends the purchase</p>
+  <ul class="sheet-list">{stops}</ul>
+  {tool_html}
+</section>""")
+
+    body = f"""
+<header class="chapter-head">
+  <div class="wrap">
+    {L.crumbs([('Home', '/'), ('Framework', '/framework/'), ('Decision sheet', None)])}
+    <p class="eyebrow">Layers 1 to 5, in order</p>
+    <h1 class="chapter-title display">The decision sheet</h1>
+    <p class="chapter-lede">Twenty-five things to confirm and fifteen things that end the purchase, arranged so that failure stays cheap.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sheet-intro prose">
+      <p>This is the framework as a working document. Answer layer 1 before doing anything else: if a stop condition there is true, none of the rest of this page applies to you. Each layer is meant to be settled before you spend money on the next one.</p>
+      <p>Your ticks are stored in this browser and nowhere else. There is no account, no form and no submission — if you want a record, print the page and keep it with your notes.</p>
+    </div>
+
+    <div class="sheet" data-sheet>
+      <div class="sheet-top">
+        <div class="sheet-meter">
+          <p class="sheet-progress" data-progress>0 of 5 layers cleared</p>
+          <div class="sheet-bar" aria-hidden="true"><span data-bar style="width:0%"></span></div>
+        </div>
+        <button type="button" class="sheet-reset" data-sheet-reset>Clear all</button>
+      </div>
+      <div class="sheet-verdict" data-verdict hidden></div>
+      {''.join(blocks)}
+      <p class="sheet-foot">Print this page and take it to your lawyer. A ticked box is your own answer, not evidence — the sheet exists to show you which answers you have not actually checked.</p>
+    </div>
+
+    <div class="sheet-intro prose">
+      <p><strong>What this sheet is not.</strong> It is not a legal opinion, a valuation, or a prediction. It does not tell you whether prices will rise. It is a way of finding out, in ten minutes and for nothing, whether a purchase you are considering fails on the first two layers — which is where most purchases by foreign buyers actually fail.</p>
+      <p>If you want the reasoning behind any line, follow it back to <a href="/framework/">the framework</a>. If you want the vocabulary you will hear at the counter, the <a href="/glossary/">glossary</a> has the twenty-four terms that come up most often, with the characters you will see on paper.</p>
+    </div>
+  </div>
+</section>"""
+
+    return L.page(
+        title="The decision sheet",
+        description="The five-layer framework as a working checklist: twenty-five checks and fifteen stop conditions for foreign buyers of property in China.",
+        path="/framework/decision-sheet/",
+        body=body,
+        nav_active="Framework",
+        body_class="page-chapter",
+        jsonld=[breadcrumb_ld([("Home", "/"), ("Framework", "/framework/"),
+                               ("Decision sheet", "/framework/decision-sheet/")])],
+        extra_scripts=f'<script src="/js/decision.js?v={C.ASSET_V}" defer></script>',
+    )
+
+
+def glossary(entries: list[dict], guides: list[dict]) -> str:
+    titles = {g["slug"]: g["title"] for g in guides}
+    ordered = sorted(entries, key=lambda e: e["english"].lower())
+
+    by_letter: dict[str, list[dict]] = {}
+    for e in ordered:
+        by_letter.setdefault(e["english"][0].upper(), []).append(e)
+
+    def card(e: dict) -> str:
+        gid = md.slugify(e["english"])
+        see = "".join(
+            f'<a href="/guides/{L.esc(s)}/">{L.esc(titles.get(s, s.replace("-", " ")))}</a>'
+            for s in e.get("see", []) if s
+        )
+        see_html = f'<p class="gterm-see">Where this matters: {see}</p>' if see else ""
+        return f"""
+<li class="gterm" id="{gid}">
+  <div class="gterm-head">
+    <h3 class="gterm-zh">{L.esc(e['term'])}</h3>
+    <p class="gterm-py">{L.esc(e['pinyin'])}</p>
+    <p class="gterm-en">{L.esc(e['english'])}</p>
+  </div>
+  <p class="gterm-def">{L.esc(e['def'])}</p>
+  {see_html}
+</li>"""
+
+    jump = "".join(f'<a href="#letter-{k}">{k}</a>' for k in by_letter)
+    sections = "".join(
+        f'<h2 class="g-letter" id="letter-{k}">{k}</h2>'
+        f'<ul class="g-list">{"".join(card(e) for e in group)}</ul>'
+        for k, group in by_letter.items()
+    )
+
+    term_set = {
+        "@context": "https://schema.org",
+        "@type": "DefinedTermSet",
+        "name": "Glossary of Chinese property terms",
+        "hasDefinedTerm": [
+            {"@type": "DefinedTerm", "name": e["english"],
+             "alternateName": e["term"], "description": e["def"]}
+            for e in ordered
+        ],
+    }
+
+    body = f"""
+<header class="chapter-head">
+  <div class="wrap">
+    {L.crumbs([('Home', '/'), ('Glossary', None)])}
+    <p class="eyebrow">{len(entries)} terms</p>
+    <h1 class="chapter-title display">The words on the paperwork</h1>
+    <p class="chapter-lede">Every term you are likely to meet at a counter or on a certificate, with the characters, the pinyin, and what it actually decides.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <div class="glossary-intro prose">
+      <p>Property in China is discussed in a vocabulary that carries legal weight and is almost never translated in the room. Knowing the four characters on a certificate is the difference between understanding what you own and being told what you own.</p>
+      <p>The pinyin is included because you will hear these words spoken long before you see them written. Say the term out loud once; it is the fastest way to stop a conversation that has moved past you.</p>
+    </div>
+    <nav class="g-jump" aria-label="Jump to letter">{jump}</nav>
+    {sections}
+    <div class="glossary-intro prose">
+      <p>If a term you met is missing, that is a gap worth reporting — <a href="/about/">tell us</a> and it will be added with the same treatment.</p>
+    </div>
+  </div>
+</section>"""
+
+    return L.page(
+        title="Glossary",
+        description="Twenty-four Chinese property terms with characters, pinyin and plain-English definitions, from 契税 to 资金监管.",
+        path="/glossary/",
+        body=body,
+        body_class="page-chapter",
+        jsonld=[breadcrumb_ld([("Home", "/"), ("Glossary", "/glossary/")]), term_set],
     )
 
 

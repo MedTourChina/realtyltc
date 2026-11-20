@@ -1,0 +1,77 @@
+[
+  {
+    "layer": 1,
+    "checks": [
+      { "id": "l1-permit", "text": "My residence permit is for work or study, not tourism, business or family reunion." },
+      { "id": "l1-year", "text": "I can produce authority-issued tax or social insurance records covering twelve continuous months in this city." },
+      { "id": "l1-employer", "text": "My employer's registered address is in the same city as the property I want to buy." },
+      { "id": "l1-household", "text": "Neither I nor my spouse owns residential property anywhere in mainland China." },
+      { "id": "l1-written", "text": "The district housing bureau has confirmed my documents list in writing." }
+    ],
+    "stops": [
+      { "id": "l1-stop-permit", "text": "My permit is not work or study." },
+      { "id": "l1-stop-spouse", "text": "My spouse already owns a home in China." },
+      { "id": "l1-stop-city", "text": "I want to buy in a city where I do not work or study." }
+    ]
+  },
+  {
+    "layer": 2,
+    "checks": [
+      { "id": "l2-horizon", "text": "I have written down how many years I will live in this city, as a number." },
+      { "id": "l2-yield", "text": "I know the gross yield on this unit, and I have compared it with my mortgage rate." },
+      { "id": "l2-roundtrip", "text": "I have calculated the round-trip cost (8–11%) and divided it by my holding period." },
+      { "id": "l2-rent", "text": "I have run the rent-versus-buy comparison over my own horizon." },
+      { "id": "l2-motive", "text": "I can explain my reason for buying without referring to what prices might do." }
+    ],
+    "stops": [
+      { "id": "l2-stop-short", "text": "I expect to leave within three years." },
+      { "id": "l2-stop-liquid", "text": "I might need this money back within a year." },
+      { "id": "l2-stop-invest", "text": "My main reason is that the price is likely to rise." }
+    ]
+  },
+  {
+    "layer": 3,
+    "checks": [
+      { "id": "l3-district", "text": "I can name the district I would live in, and I have visited it at 8am on a weekday." },
+      { "id": "l3-school", "text": "If I have children, the school place is confirmed or the application calendar is understood." },
+      { "id": "l3-commute", "text": "I know my actual door-to-door commute, not the map distance." },
+      { "id": "l3-pool", "text": "I know roughly how long a resale would take in this district, and who the buyer would be." },
+      { "id": "l3-services", "text": "I have identified a lawyer in this city who has handled a foreign purchase recently." }
+    ],
+    "stops": [
+      { "id": "l3-stop-school", "text": "The school question is unresolved." },
+      { "id": "l3-stop-district", "text": "I cannot name a district." },
+      { "id": "l3-stop-thin", "text": "There are almost no foreign-buyer transactions in this market." }
+    ]
+  },
+  {
+    "layer": 4,
+    "checks": [
+      { "id": "l4-use", "text": "The registered use on the title certificate is residential (住宅)." },
+      { "id": "l4-term", "text": "I know the land grant date, and the remaining term is at least 35 years." },
+      { "id": "l4-area", "text": "I know the registered area, and whether it sits either side of the 140m² deed-tax threshold." },
+      { "id": "l4-fees", "text": "I know the management fee and heating cost per year as a share of price." },
+      { "id": "l4-orders", "text": "I have checked for heritage, planning or demolition orders on the building." }
+    ],
+    "stops": [
+      { "id": "l4-stop-use", "text": "The use is commercial or the unit is a 40/50-year loft." },
+      { "id": "l4-stop-term", "text": "Remaining land term is under 35 years." },
+      { "id": "l4-stop-order", "text": "There is a heritage or demolition order on the building." }
+    ]
+  },
+  {
+    "layer": 5,
+    "checks": [
+      { "id": "l5-title", "text": "A registry search confirmed ownership, and no mortgages, seals or objections." },
+      { "id": "l5-consent", "text": "The seller's spouse will sign, and I have seen the marriage certificate." },
+      { "id": "l5-escrow", "text": "The supervised escrow account exists, and the release conditions are written into it." },
+      { "id": "l5-refund", "text": "The contract refunds my deposit if eligibility or financing fails, by a stated date." },
+      { "id": "l5-price", "text": "The registered price is the price I am actually paying." }
+    ],
+    "stops": [
+      { "id": "l5-stop-cash", "text": "Someone asked me to pay a person rather than an account." },
+      { "id": "l5-stop-under", "text": "I was asked to register a lower price to save tax." },
+      { "id": "l5-stop-untranslated", "text": "I am being asked to sign a contract I have not had translated." }
+    ]
+  }
+]
