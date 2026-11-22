@@ -1,0 +1,74 @@
+{
+  "shanghai": {
+    "buyer": "Inside the Outer Ring the marginal buyer is a local household selling one flat to buy a better one, so your sale sits inside someone else's chain. Ask an agent how many of their last ten deals were chain-dependent before you accept a long completion date.",
+    "supply": "Resale dominates. New launches inside the Ring are scarce, often allocated by lottery or sold under price guidance that appears only at launch. Assume you will buy second-hand and price your search accordingly.",
+    "negotiation": "On resale, a low single-digit percentage off asking is ordinary; the real lever is the seller's forward purchase. Lane houses and protected stock are a different market, where the discount is payment for risk rather than reward for skill.",
+    "exit": "Central two- and three-bedroom stock clears in months. Above roughly 25 million yuan, or in protected lane housing, expect a year and a patient buyer. Anything you cannot hold for two years is a speculation, not a purchase."
+  },
+  "beijing": {
+    "buyer": "Buyers here pay for catchment (学区) as much as for the building, and the premium is set by administrative boundary rather than by the flat. Your exit therefore depends on a school map you do not control.",
+    "supply": "Workable stock is resale near the ring roads. Courtyard houses (四合院) are a specialist asset with title and heritage complications most foreign buyers underestimate, and some compounds restrict foreign ownership at building level.",
+    "negotiation": "The lever is the seller's tax position: 满五唯一 changes their cost and therefore their floor. Ask for the certificate date and the family's other holdings before discussing price at all.",
+    "exit": "Catchment premiums have been repriced by policy before. Treat the school component of the price as non-transferable, and ask whether the same flat, without the school line, would still sell at your number."
+  },
+  "shenzhen": {
+    "buyer": "The marginal buyer is a technology or finance employee carrying leverage, so lending rules move their budget more than sentiment does. Reference-price policy can cap a mortgage below the contract price, which means a buyer may need cash for the gap.",
+    "supply": "Most stock was built after 2000, with better lifts and management than older cities can offer. New launches arrive in phases with rising prices, so the phase you can actually buy is often the worst-value one.",
+    "negotiation": "Ask for the certificate date rather than the handover date, because restricted resale windows run from the certificate. If the seller needs your money to clear their mortgage, that is a scheduling risk to price, not a discount to enjoy.",
+    "exit": "Shekou and Nanshan resell; urban-village redevelopment and peripheral new supply do not. Check how many units in the compound are rented out, since a rental-heavy building sells slowly regardless of price."
+  },
+  "guangzhou": {
+    "buyer": "The buyer pool is local and trade-connected: upgraders, plus the African and Middle Eastern business communities around Xiaobei and Sanyuanli. Western corporate demand is concentrated in Tianhe and thin everywhere else.",
+    "supply": "Supply is broad and renovation quality varies enormously. A well-run building with a real management office is worth more here than a view, and the difference shows up at resale rather than at purchase.",
+    "negotiation": "Ask for the management fee history and any arrears, because deferred maintenance is the standard way value leaks in this market. District purchase limits can change faster than city-level ones, so confirm the district rule before the building.",
+    "exit": "Central districts resell at ordinary speed; peripheral stock and buildings with informal rental arrangements take longer and price worse. If your plan depends on selling within three years, stay in Tianhe, Yuexiu or Haizhu."
+  },
+  "hangzhou": {
+    "buyer": "Technology salaries set the ceiling, so the buyer pool is younger and more cyclical than in Guangzhou. Remote and hybrid workers have added a second, smaller pool that is not salary-bound and mostly wants the established districts.",
+    "supply": "New supply on the western edge has repeatedly outrun demand. Established districts around the lake and the canal are scarce, which is why the price gap between them and the periphery stays so wide.",
+    "negotiation": "On new builds the listed price is a starting point and the real terms sit in the payment schedule and the finish. On resale, ask what the seller paid and when: that tells you their floor better than any listing price does.",
+    "exit": "Peripheral new-build can take a decade to become liquid, and some never does. Buy in an established district unless you can hold through a full cycle without needing to sell."
+  },
+  "suzhou": {
+    "buyer": "In the Industrial Park the buyer pool is corporate families on three- to five-year postings, so rental demand is tied to a small number of large employers. Outside SIP you are selling to local households at local prices.",
+    "supply": "SIP is mature and well supplied with compounds built for expatriate families. The old city is a lifestyle purchase with heritage rules that can prevent structural change, which quietly removes buyers who want to renovate.",
+    "negotiation": "In SIP, negotiate on the service charge and the condition of the fit-out rather than the headline price, because the tenants who pay the rent care about both. In Gusu, get the heritage order's limits in writing before you plan anything.",
+    "exit": "Your buyer in SIP is most likely another expatriate family, which makes the pool thin and the timing seasonal. Check how many units in the compound are owner-occupied before you assume you can sell when your posting ends."
+  },
+  "chengdu": {
+    "buyer": "The marginal buyer is a local upgrader, and the foreign component is small and long-stay rather than corporate. Your exit therefore depends on local incomes, not on the expatriate rental market that made the city attractive.",
+    "supply": "Supply is broad and cheap by coastal standards. Oversupply in the new districts is the structural fact of this market, and it is the thing that will price your resale when you come to sell.",
+    "negotiation": "Prices are genuinely negotiable and the seller's holding cost is low, so patience works in your favour. Check the maintenance fund payment and the 满二/满五 status, because they move the total cost more than a small discount does.",
+    "exit": "In Tianfu and the outer new districts, resale can take a year or more and still fail. Buy where people already live, not where the masterplan says they will live in ten years."
+  },
+  "nanjing": {
+    "buyer": "School-driven local families dominate the premium end, which makes catchment the real pricing mechanism. Foreign buyers are few, so you are competing with parents rather than with other expatriates, and you will lose that competition on emotion.",
+    "supply": "Gulou is old stock inside the best catchments; Jianye is newer stock along the river with thinner street life. The two are not substitutes and should not be compared on price per square metre alone.",
+    "negotiation": "The negotiation is about the catchment, not the flat: get the school's written confirmation of the current assignment before you discuss money. Older central stock usually needs a full renovation, and that belongs in your number, not in your optimism.",
+    "exit": "A catchment premium can be removed by an administrative decision. If the flat would not sell at your price without the school line, you are buying a policy, not a property."
+  },
+  "tianjin": {
+    "buyer": "Buyers are local households plus Beijing spillover, and in Binhai the pool is corporate staff on assignment. Those are three different exit markets, and only the first one is deep enough to rely on.",
+    "supply": "Prices have been flat to soft for several years, so the market is genuinely negotiable. That is good for entry and bad for exit, and both halves bear on the same decision.",
+    "negotiation": "Ask what the seller paid and when. In a soft market the useful question is not how far they will come down but how long they can wait, because time is the only thing they still have plenty of.",
+    "exit": "Binhai resale is weak and can take a long time to clear, and historic buildings in Heping may carry protection orders that limit renovation and therefore shrink your buyer pool. If you need liquidity, stay central."
+  },
+  "qingdao": {
+    "buyer": "The pool is second-home buyers from Beijing and Shanghai plus Korean and Japanese residents. Second-home demand is seasonal and discretionary, which makes it the first thing to disappear in a slow year.",
+    "supply": "Shinan is scarce, protected and expensive; Huangdao across the bay has large new supply and much lower prices. They behave like different markets because they are different markets, joined by a tunnel.",
+    "negotiation": "Buy in winter if you can. Summer pricing carries a seasonal premium that has nothing to do with the building, and the same flat is negotiable in January in a way it never is in August.",
+    "exit": "Seasonal vacancy is what makes yields look better than they are. Ask for twelve months of rental records rather than the summer rate, and check how many units in the building are short-let."
+  },
+  "xiamen": {
+    "buyer": "Demand comes from families with Taiwan, Southeast Asian and diaspora ties, plus local upgraders. It is not a corporate posting market, so the pool is relationship-driven and smaller than the price suggests.",
+    "supply": "The island is genuinely constrained, which supports prices; the mainland side is abundant, which does not. The bridge is not a small detail, because it separates two different liquidity regimes.",
+    "negotiation": "On the island, stock sells close to asking and the levers are condition and timing. Off-island, negotiate hard and check how much of the surrounding supply is still unsold by the developer.",
+    "exit": "Off-island resale is weak, and typhoon-season maintenance costs are real rather than theoretical. If you could not sell within a year of wanting to, you have bought a liability with a sea view."
+  },
+  "wuhan": {
+    "buyer": "The pool is academic and industrial postings plus local upgraders, and it is thin at the top. There is no meaningful expatriate resale market here, so your exit is to a local buyer at a local price.",
+    "supply": "Supply is ample and cheap in absolute terms. Ample supply is precisely what keeps resale slow, so the binding constraint in this market is liquidity rather than price.",
+    "negotiation": "Everything is negotiable and nothing is urgent, for either side. Check the building's occupancy and the management company's record, because a half-empty tower is a decade-long problem rather than a year-long one.",
+    "exit": "Expect marketing periods measured in many months, and price that in at entry rather than at exit. If you might need the money within five years, renting is the better decision in this city."
+  }
+}

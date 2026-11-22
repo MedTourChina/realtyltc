@@ -271,6 +271,9 @@ def build() -> None:
     C.ASSET_V = asset_version()
 
     cities = load_json("cities.json")
+    structure = load_json("city-structure.json")
+    for _city in cities:
+        _city["structure"] = structure.get(_city["slug"])
     faq = load_json("faq.json")
     guides = load_guides()
     chapters = load_framework(guides)

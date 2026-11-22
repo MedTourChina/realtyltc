@@ -318,6 +318,33 @@ def city_page(city: dict, cities: list[dict], guides: list[dict]) -> str:
     risks = "".join(f"<li>{L.esc(r)}</li>" for r in city["risks"])
     guide_cards = "".join(L.guide_card(g) for g in guides)
 
+    deal_html = ""
+    if city.get("structure"):
+        _s = city["structure"]
+        _deal_rows = [
+            ("buyer", "Who is on the other side"),
+            ("supply", "What actually trades"),
+            ("negotiation", "What is normal to negotiate"),
+            ("exit", "What your exit looks like"),
+        ]
+        _cards = "".join(
+            f'<div class="deal"><p class="deal-label">{_lab}</p>'
+            f'<p class="deal-text">{L.esc(_s[_key])}</p></div>'
+            for _key, _lab in _deal_rows
+            if _s.get(_key)
+        )
+        deal_html = f"""
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Structure of a deal</p>
+      <h2 class="section-title">What a purchase in {L.esc(city['name'])} actually looks like</h2>
+      <p class="section-sub">Price is the last thing that decides the outcome. These four decide it first, and every one of them can be checked before you sign anything.</p>
+    </div>
+    <div class="deal-grid">{_cards}</div>
+  </div>
+</section>"""
+
     body = f"""
 <section class="city-hero">
   <div class="city-hero-sky">{sky}</div>
@@ -387,7 +414,7 @@ def city_page(city: dict, cities: list[dict], guides: list[dict]) -> str:
     </div>
   </div>
 </section>
-
+{deal_html}
 <section class="section">
   <div class="wrap">
     <div class="section-head">
