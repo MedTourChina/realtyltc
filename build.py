@@ -20,6 +20,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from sitegen import config as C          # noqa: E402
 from sitegen import layout as L          # noqa: E402
+from sitegen import md                   # noqa: E402
 from sitegen import svg                  # noqa: E402
 from sitegen import pages, pages_extra   # noqa: E402
 
@@ -279,6 +280,22 @@ def build() -> None:
     chapters = load_framework(guides)
     content_pages = load_pages()
 
+    # reverse index: glossary term -> the pages that should surface it
+    glossary = load_json("glossary.json")
+    C.GLOSSARY_TERMS = [
+        {"term": e["term"], "english": e["english"], "id": md.slugify(e["english"])}
+        for e in glossary
+    ]
+    terms_by_page: dict[str, list[dict]] = {}
+    for _e in glossary:
+        _entry = {"term": _e["term"], "english": _e["english"], "id": md.slugify(_e["english"])}
+        for _slug in _e.get("see", []):
+            terms_by_page.setdefault(_slug, []).append(_entry)
+    for _g in guides:
+        _g["terms"] = terms_by_page.get(_g["slug"], [])
+    for _ch in chapters:
+        _ch["terms"] = terms_by_page.get(_ch["slug"], [])
+
     written: list[tuple[str, str]] = []   # (path, lastmod)
 
     # home
@@ -293,7 +310,7 @@ def build() -> None:
         nxt = chapters[i + 1] if i + 1 < len(chapters) else None
         layer_guides = [g for g in guides if g.get("layer") == ch["n"]] or guides[:3]
         write(url_to_file(f"/framework/{ch['slug']}/"),
-              pages_extra.framework_chapter(ch, prev, nxt, layer_guides))
+              pages_extra.framework_chapter(ch, prev, nxt, layer_guides, cities))
         written.append((f"/framework/{ch['slug']}/", ch["updated"]))
 
     # decision sheet + glossary
@@ -327,7 +344,7 @@ def build() -> None:
                     rel.append(cand)
                 if len(rel) == 3:
                     break
-        write(url_to_file(f"/guides/{g['slug']}/"), pages.guide_page(g, rel))
+        write(url_to_file(f"/guides/{g['slug']}/"), pages.guide_page(g, rel, cities))
         written.append((f"/guides/{g['slug']}/", g["updated"]))
 
     # tools

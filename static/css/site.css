@@ -3171,3 +3171,125 @@ h4 {
 @media (max-width: 860px) {
   .deal-grid { grid-template-columns: 1fr; }
 }
+
+/* --- glossary note inside tool strip --- */
+.tool-strip-note {
+  margin: 1.1rem 0 0;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--ink-60);
+}
+.tool-strip-note a { color: var(--amber-deep); text-decoration: underline; text-underline-offset: 2px; }
+
+/* --- city strip --- */
+.city-strip {
+  margin: 2rem 0 0;
+  padding: 1.25rem 1.35rem;
+  background: var(--paper-2, #f4f1ea);
+  border-radius: 2px;
+}
+.city-strip-label {
+  margin: 0 0 0.8rem;
+  font-size: 0.71rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--amber);
+}
+.city-strip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.city-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  background: var(--paper);
+  border: 1px solid rgba(18, 25, 43, 0.12);
+  border-radius: 2px;
+  text-decoration: none;
+  font-size: 0.88rem;
+  color: var(--ink);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.city-chip:hover { border-color: var(--amber); color: var(--amber-deep); }
+.city-chip-zh { font-size: 0.78rem; color: var(--ink-45); }
+.city-strip-note {
+  margin: 0.9rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--ink-60);
+}
+.city-strip-note a { color: var(--amber-deep); text-decoration: underline; text-underline-offset: 2px; }
+
+/* --- glossary term chips --- */
+.term-strip {
+  margin: 2rem 0 0;
+  padding: 1.25rem 1.35rem;
+  background: var(--paper-2, #f4f1ea);
+  border-radius: 2px;
+}
+.term-strip-label {
+  margin: 0 0 0.75rem;
+  font-size: 0.71rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--amber);
+}
+.term-strip-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+.term-strip-list li { margin: 0; }
+.term-strip-list a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.42rem;
+  padding: 0.34rem 0.7rem;
+  background: var(--paper);
+  border: 1px solid rgba(18, 25, 43, 0.12);
+  border-radius: 2px;
+  text-decoration: none;
+}
+.term-strip-list a:hover { border-color: var(--amber); }
+.term-chip-zh { font-size: 0.88rem; color: var(--ink); }
+.term-chip-en { font-size: 0.76rem; color: var(--ink-45); }
+
+/* city strip reads as a continuation row, not a second box */
+.city-strip {
+  background: transparent;
+  padding: 0;
+  margin-top: 1.6rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(18, 25, 43, 0.1);
+}
+/* inside the deal section the term strip closes the block */
+.section-alt .term-strip { margin-top: 1.9rem; }
+
+/* city chips sit inside .prose, so they need to outrank .prose a */
+.city-strip-row a.city-chip {
+  color: var(--ink);
+  text-decoration: none;
+  border-color: rgba(18, 25, 43, 0.14);
+}
+.city-strip-row a.city-chip:hover {
+  color: var(--amber-deep);
+  border-color: var(--amber);
+}
+.city-strip-row a.city-chip .city-chip-zh {
+  color: var(--ink-45);
+  text-decoration: none;
+}
+/* term chips: same specificity reason */
+.term-strip-list a { text-decoration: none; }
+.term-strip-list a:hover { color: var(--ink); }
+
+/* keep short CJK runs (四合院, 满五唯一) from breaking mid-word in deal cards */
+.deal-text { word-break: keep-all; }

@@ -276,6 +276,7 @@ def tool_strip(layer_n: int, title: str = "What to do next") -> str:
 <aside class="tool-strip">
   <p class="tool-strip-label">{esc(title)}</p>
   <div class="tool-strip-grid">{cards}</div>
+  <p class="tool-strip-note">Words on the paperwork are usually left untranslated in the room. <a href="/glossary/">The glossary gives every one of them the characters, the pinyin and the plain meaning →</a></p>
 </aside>"""
 
 
@@ -292,11 +293,53 @@ def next_step(layer_n: int) -> str:
         if layer_n != 4 and layer_n != 5
         else ""
     )
+    gloss = (
+        '<li><a href="/glossary/">Look up a term</a> '
+        "<span>The words on the certificate, with characters and pinyin.</span></li>"
+    )
     return f"""
 <aside class="next-step">
   <p class="next-step-label">Your next step</p>
-  <ul class="next-step-list">{links}{sheet}</ul>
+  <ul class="next-step-list">{links}{sheet}{gloss}</ul>
 </aside>"""
+
+
+def city_strip(cities: list[dict], limit: int = 4, title: str = "Check this in the city you are buying in") -> str:
+    """Compact link row to the largest markets, for pages that describe national rules."""
+    picked = sorted(cities, key=lambda c: c.get("rank", 99))[:limit]
+    chips = "".join(
+        f'<a class="city-chip" href="/cities/{esc(c["slug"])}/"><span class="city-chip-en">{esc(c["name"])}</span>'
+        f'<span class="city-chip-zh">{esc(c["name_zh"])}</span></a>'
+        for c in picked
+    )
+    return f"""
+<aside class="city-strip">
+  <p class="city-strip-label">{esc(title)}</p>
+  <div class="city-strip-row">{chips}</div>
+  <p class="city-strip-note">Eligibility, tax treatment and purchase limits are applied at municipal level and change without much notice. <a href="/cities/">All {len(cities)} cities →</a></p>
+</aside>"""
+
+
+def term_chips(terms: list[dict], label: str = "Terms this page uses") -> str:
+    """Glossary terms that a given page actually uses, resolved through the reverse index."""
+    if not terms:
+        return ""
+    chips = "".join(
+        f'<li><a href="/glossary/#{esc(t["id"])}"><span class="term-chip-zh">{esc(t["term"])}</span>'
+        f'<span class="term-chip-en">{esc(t["english"])}</span></a></li>'
+        for t in terms
+    )
+    return f"""
+<aside class="term-strip">
+  <p class="term-strip-label">{esc(label)}</p>
+  <ul class="term-strip-list">{chips}</ul>
+</aside>"""
+
+
+def term_chips_by_ids(ids: list[str], label: str = "Terms this page uses") -> str:
+    """Curated term strip by glossary id, for pages that are not tied to one guide."""
+    index = {t["id"]: t for t in getattr(C, "GLOSSARY_TERMS", [])}
+    return term_chips([index[i] for i in ids if i in index], label)
 
 
 def flow(steps: list[tuple[str, str]]) -> str:

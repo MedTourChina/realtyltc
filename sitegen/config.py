@@ -111,6 +111,15 @@ FOOTER_NAV = [
     ),
 ]
 
+# The four variables that actually differ between cities, as glossary ids.
+# Shown on every city page: these are the words local practice is argued in.
+CITY_TERMS = [
+    "purchase-restriction",
+    "school-catchment",
+    "deed-tax",
+    "five-years-only-home",
+]
+
 # What to do next, per layer. A framework that dead-ends is a lecture.
 # Each entry: (label, href, one-line reason)
 LAYER_TOOLS = {

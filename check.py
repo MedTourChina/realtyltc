@@ -18,7 +18,7 @@ DIST = Path(__file__).resolve().parent / "dist"
 SITE_HOST = C.SITE_URL.split("//", 1)[-1]
 
 HREF = re.compile(r'(?:href|src)="(/[^"#]*)"')
-ANCHOR = re.compile(r'href="/[^"#?]*#([^"]+)"')
+ANCHOR = re.compile(r'href="(/[^"#?]*)#([^"]+)"')
 ID = re.compile(r'\sid="([^"]+)"')
 
 
@@ -52,10 +52,15 @@ def main() -> int:
             target = target_file(href)
             if not target.exists():
                 missing.append((page, href))
-        for frag in set(ANCHOR.findall(text)):
-            # anchors are checked against the page that contains the link itself
-            if frag not in ids_by_file[page]:
-                bad_anchors.append((page, frag))
+        for path_part, frag in set(ANCHOR.findall(text)):
+            # resolve the anchor against the page the link actually points at,
+            # so cross-page fragments (/glossary/#deed-tax) are checked properly
+            target = target_file(path_part)
+            ids = ids_by_file.get(target)
+            if ids is None:
+                continue  # missing page already reported by the HREF pass
+            if frag not in ids:
+                bad_anchors.append((page, f"{path_part}#{frag}"))
 
     for page in pages:
         for m in re.finditer(r'(?:href|src)="(https?://[^"]+)"', page.read_text(encoding="utf-8")):
@@ -77,9 +82,9 @@ def main() -> int:
     if bad_anchors:
         print(f"\nBROKEN ANCHORS ({len(bad_anchors)}):")
         for page, frag in bad_anchors[:40]:
-            print(f"  {page.relative_to(DIST)}  #{frag}")
+            print(f"  {page.relative_to(DIST)}  ->  {frag}")
     else:
-        print("all same-page anchors resolve")
+        print("all anchors resolve (same-page and cross-page)")
 
     # every page should carry a title, description and canonical
     problems = 0

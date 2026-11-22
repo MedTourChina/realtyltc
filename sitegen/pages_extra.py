@@ -122,7 +122,7 @@ def framework_index() -> str:
 
 
 def framework_chapter(ch: dict, prev: dict | None, nxt: dict | None,
-                      guides: list[dict]) -> str:
+                      guides: list[dict], cities: list[dict] | None = None) -> str:
     body_html = md.render(ch["body"])
     toc_html = L.toc(md.headings(body_html))
     related_html = L.related(guides, title=f"Guides that support layer {ch['n']}")
@@ -142,6 +142,7 @@ def framework_chapter(ch: dict, prev: dict | None, nxt: dict | None,
   <div class="prose">
     {body_html}
     {L.tool_strip(ch['n'])}
+    {L.city_strip(cities) if cities else ""}
   </div>
 </div>
 

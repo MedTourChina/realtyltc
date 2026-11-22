@@ -342,6 +342,7 @@ def city_page(city: dict, cities: list[dict], guides: list[dict]) -> str:
       <p class="section-sub">Price is the last thing that decides the outcome. These four decide it first, and every one of them can be checked before you sign anything.</p>
     </div>
     <div class="deal-grid">{_cards}</div>
+    {L.term_chips_by_ids(C.CITY_TERMS, "The four words a city is argued in")}
   </div>
 </section>"""
 
@@ -547,7 +548,7 @@ def guides_index(guides: list[dict]) -> str:
     )
 
 
-def guide_page(post: dict, related: list[dict]) -> str:
+def guide_page(post: dict, related: list[dict], cities: list[dict] | None = None) -> str:
     body_html = md.render(post["body"])
     toc_html = L.toc(md.headings(body_html))
     answer_html = L.answer_box("The short answer", md.render(post["answer_md"])) if post["answer_md"] else ""
@@ -564,6 +565,8 @@ def guide_page(post: dict, related: list[dict]) -> str:
       </a>"""
 
     next_html = L.next_step(int(layer)) if layer else ""
+    terms_html = L.term_chips(post.get("terms") or [])
+    city_html = L.city_strip(cities) if cities else ""
 
     body = f"""
 <article>
@@ -588,6 +591,8 @@ def guide_page(post: dict, related: list[dict]) -> str:
     <div class="prose">
       {answer_html}
       {body_html}
+      {terms_html}
+      {city_html}
       {next_html}
       {L.editorial_note('General information only — not legal, tax or investment advice. Rules change, and city practice varies. Confirm the position for your own file before acting.')}
     </div>
