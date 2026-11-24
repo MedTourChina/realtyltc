@@ -41,6 +41,8 @@ GUIDE_LAYERS = {
     "choosing-where-to-live": 3,
     "seventy-fifty-forty-year-land-use": 4,
     "buying-off-plan-vs-resale": 4,
+    "marriage-divorce-and-inheritance": 4,
+    "new-build-vs-resale-costs": 2,
     "escrow-and-payment-stages": 5,
     "moving-money-into-china-for-property": 5,
     "renting-in-china-as-a-foreigner": 5,
@@ -354,7 +356,7 @@ def build() -> None:
     written.append(("/tools/eligibility/", "2026-03-06"))
     write(url_to_file("/tools/purchase-cost/"), pages_extra.cost_tool(cities))
     written.append(("/tools/purchase-cost/", "2026-03-06"))
-    write(url_to_file("/tools/rent-vs-buy/"), pages_extra.rentbuy_tool())
+    write(url_to_file("/tools/rent-vs-buy/"), pages_extra.rentbuy_tool(cities))
     written.append(("/tools/rent-vs-buy/", "2026-03-06"))
 
     # content pages (verify, about, legal)
@@ -363,7 +365,7 @@ def build() -> None:
         written.append((post["path"], post["updated"]))
 
     # faq + 404
-    write(url_to_file("/faq/"), pages_extra.faq_page(faq))
+    write(url_to_file("/faq/"), pages_extra.faq_page(faq, cities))
     written.append(("/faq/", "2026-03-06"))
     write("404.html", pages_extra.not_found())
 

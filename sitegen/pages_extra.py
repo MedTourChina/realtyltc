@@ -218,7 +218,9 @@ def tools_index() -> str:
     )
 
 
-def _tool_epilogue(layer_n: int, links: list[tuple[str, str, str]]) -> str:
+def _tool_epilogue(layer_n: int, links: list[tuple[str, str, str]],
+                   terms: list[str] | None = None,
+                   cities: list[dict] | None = None) -> str:
     """A calculator that ends in a number is a dead end. Hand the reader back to
     the reasoning the number sits inside, and to the checklist."""
     l = C.LAYERS[layer_n - 1]
@@ -235,6 +237,10 @@ def _tool_epilogue(layer_n: int, links: list[tuple[str, str, str]]) -> str:
         '<span class="step-card-reason">' + L.esc(reason) + '</span></a>'
         for title, href, reason in rows
     )
+    strip = ""
+    if terms:
+        strip = L.term_chips_by_ids(terms, "The words this calculator is built on")
+    city_html = L.city_strip(cities) if cities else ""
     return (
         '<section class="section"><div class="wrap">'
         '<p class="eyebrow">What a calculator cannot decide</p>'
@@ -242,6 +248,7 @@ def _tool_epilogue(layer_n: int, links: list[tuple[str, str, str]]) -> str:
         '<p class="section-sub">This tool answers one question. The framework is where '
         'that answer is tested against the other four.</p>'
         '<div class="tool-strip-grid mt-2">' + items + '</div>'
+        + strip + city_html +
         '</div></section>'
     )
 
@@ -320,7 +327,8 @@ def eligibility_tool(cities: list[dict]) -> str:
         body=body + _tool_epilogue(1, [
             ("Read the one-year rule", "/guides/the-one-year-rule/", "What counts as a year of work or study, and what does not."),
             ("See how the twelve cities differ", "/cities/", "The same rule, administered twelve different ways."),
-        ]),
+        ], terms=["purchase-restriction", "residence-registration", "online-contract-registration"],
+           cities=cities),
         nav_active="Tools",
         body_class="page-tool",
         extra_scripts=f'<script src="/js/calc.js?v={C.ASSET_V}" defer></script>',
@@ -416,7 +424,8 @@ def cost_tool(cities: list[dict]) -> str:
         body=body + _tool_epilogue(2, [
             ("Why the exit costs more than the entry", "/guides/exit-and-repatriation/", "The channel your money came in through decides whether it can leave."),
             ("Compare renting and buying", "/tools/rent-vs-buy/", "The same flat, the same horizon, held as an asset or as a payment."),
-        ]),
+        ], terms=["deed-tax", "value-added-tax", "individual-income-tax", "five-years-only-home"],
+           cities=cities),
         nav_active="Tools",
         body_class="page-tool",
         extra_scripts=f'<script src="/js/calc.js?v={C.ASSET_V}" defer></script>',
@@ -424,7 +433,7 @@ def cost_tool(cities: list[dict]) -> str:
     )
 
 
-def rentbuy_tool() -> str:
+def rentbuy_tool(cities: list[dict]) -> str:
     body = f"""
 <section class="section">
   <div class="wrap">
@@ -500,7 +509,8 @@ def rentbuy_tool() -> str:
         body=body + _tool_epilogue(2, [
             ("Read the full cost of buying", "/guides/the-full-cost-of-buying-a-home-in-china/", "The eight to eleven percent round trip, itemised."),
             ("Work out the purchase cost", "/tools/purchase-cost/", "Deed tax, commission and the seller's taxes."),
-        ]),
+        ], terms=["property-management-fee", "maintenance-fund", "shared-floor-area"],
+           cities=cities),
         nav_active="Tools",
         body_class="page-tool",
         extra_scripts=f'<script src="/js/calc.js?v={C.ASSET_V}" defer></script>',
@@ -548,17 +558,27 @@ def content_page(post: dict, *, nav_active: str | None = None) -> str:
     )
 
 
-def faq_page(items: list[dict]) -> str:
+def _faq_item(x: dict) -> str:
+    """An answer that ends the conversation is a wasted answer. Every entry
+    carries the two places to go next."""
+    see = x.get("see") or []
+    links = "".join(
+        f'<a href="{L.esc(s["href"])}">{L.esc(s["label"])}</a>' for s in see
+    )
+    more = (f'<p class="faq-see"><span class="faq-see-label">Go deeper</span>{links}</p>'
+            if links else "")
+    return (f'<details class="faq-item"><summary>{L.esc(x["q"])}</summary>'
+            f'<div class="faq-a"><p>{L.esc(x["a"])}</p>{more}</div></details>')
+
+
+def faq_page(items: list[dict], cities: list[dict] | None = None) -> str:
     order = ["Eligibility", "Money", "Transaction", "Living"]
     blocks = []
     for cat in order:
         group = [x for x in items if x["category"] == cat]
         if not group:
             continue
-        qs = "".join(
-            f'<details class="faq-item"><summary>{L.esc(x["q"])}</summary><div class="faq-a"><p>{L.esc(x["a"])}</p></div></details>'
-            for x in group
-        )
+        qs = "".join(_faq_item(x) for x in group)
         blocks.append(f'<h2 class="section-title sub-head" id="{md.slugify(cat)}">{L.esc(cat)}</h2><div class="faq-group">{qs}</div>')
 
     faq_ld = {
@@ -581,6 +601,8 @@ def faq_page(items: list[dict]) -> str:
       <p class="section-sub">Short answers, with the guide or framework layer that goes deeper linked from most of them. Nothing here is a substitute for a written answer from your district bureau.</p>
     </div>
     {''.join(blocks)}
+    {L.term_chips_by_ids(["residence-registration", "online-contract-registration", "deposit", "deed-tax"], "The words in these answers")}
+    {L.city_strip(cities) if cities else ""}
   </div>
 </section>"""
 

@@ -2537,6 +2537,30 @@ h4 {
   color: var(--muted);
   line-height: 1.65;
 }
+.faq-a p.faq-see {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 0.9rem;
+  margin: -0.35rem 0 1.35rem;
+  font-size: 0.9rem;
+}
+.faq-see-label {
+  flex: none;
+  font-size: 0.71rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+.faq-a p.faq-see a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--amber);
+  padding-bottom: 1px;
+}
+.faq-a p.faq-see a:hover {
+  color: var(--amber);
+}
 
 .sub-head {
   margin-top: 3rem;
