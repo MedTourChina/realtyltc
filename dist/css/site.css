@@ -2781,6 +2781,25 @@ h4 {
   border-radius: 999px;
   transition: width 0.35s var(--ease);
 }
+.sheet-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex: none;
+}
+.sheet-print {
+  flex: none;
+  padding: 0.42rem 0.9rem;
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+.sheet-print:hover { background: #283149; }
 .sheet-reset {
   flex: none;
   padding: 0.4rem 0.85rem;
@@ -3096,12 +3115,19 @@ h4 {
   text-decoration: none;
 }
 
+.sheet-print-hint { margin: 0.7rem 0 0; color: var(--muted); font-size: 0.78rem; }
+
+/* Print-only decision-sheet snapshot */
+.sheet-print-report { display: none; }
+
 /* ------------------------------------------------------------- print */
 
 @media print {
+  @page { size: A4; margin: 14mm 13mm; }
   .site-header,
   .site-footer,
-  .sheet-reset,
+  .sheet-actions,
+  .sheet-print-hint,
   .sheet-verdict,
   .ray,
   .crumbs,
@@ -3121,6 +3147,28 @@ h4 {
     box-shadow: none;
     padding: 0;
   }
+  .sheet-print-report {
+    display: block;
+    border-bottom: 1px solid #bbb;
+    padding: 0 0 0.8rem;
+    margin: 0.8rem 0 1rem;
+  }
+  .sheet-print-report:empty { display: none; }
+  .sheet-print-report h2 { font-size: 15pt; margin: 0 0 0.5rem; }
+  .sheet-print-report > ul { columns: 2; column-gap: 1.5rem; }
+  .sheet-print-report li { break-inside: avoid; }
+  .print-sheet-only .site-header,
+  .print-sheet-only .site-footer,
+  .print-sheet-only .chapter-head,
+  .print-sheet-only .section > .wrap > .sheet-intro,
+  .print-sheet-only .section > .wrap > .sheet:not([data-sheet]) { display: none !important; }
+  .print-sheet-only .section > .wrap { max-width: none; padding-left: 0; padding-right: 0; }
+  .print-sheet-only .sheet-layer,
+  .print-sheet-only .sheet-foot,
+  .print-sheet-only .sheet-top { display: none !important; }
+  .print-sheet-only .sheet-print-report { border-bottom: 0; margin-top: 0; }
+  .print-sheet-only .section { padding-top: 0; padding-bottom: 0; }
+  .print-sheet-only .sheet { margin: 0; }
   .sheet-layer {
     break-inside: avoid;
     page-break-inside: avoid;
@@ -3317,3 +3365,18 @@ h4 {
 
 /* keep short CJK runs (四合院, 满五唯一) from breaking mid-word in deal cards */
 .deal-text { word-break: keep-all; }
+
+/* ---- city comparison table ------------------------------------------- */
+.cmp-table { min-width: 900px; }
+.cmp-table th, .cmp-table td { padding-left: 0.65rem; padding-right: 0.65rem; }
+.cmp-table td { vertical-align: top; padding-top: 1rem; padding-bottom: 1rem; }
+.cmp-table .cmp-city { white-space: nowrap; }
+.cmp-table .cmp-city strong { font-size: 1rem; }
+.cmp-table .cmp-city .muted { display: block; font-size: 0.79rem; line-height: 1.45; font-weight: 400; }
+.lvl { display: inline-flex; gap: 3px; margin: 0 0 0.35rem; vertical-align: middle; }
+.lvl i { width: 8px; height: 8px; border-radius: 50%; background: rgba(18, 25, 43, 0.15); }
+.lvl i.on { background: var(--amber); }
+.cmp-label { display: block; font-size: 0.85rem; font-weight: 600; letter-spacing: -0.005em; }
+.cmp-note { display: block; font-size: 0.78rem; line-height: 1.55; color: var(--muted); margin-top: 0.2rem; max-width: 36ch; }
+.section-head .section-sub + .section-sub { margin-top: 0.4rem; }
+@media (max-width: 700px) { .cmp-note { max-width: none; } }

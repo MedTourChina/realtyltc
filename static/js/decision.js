@@ -12,6 +12,8 @@
   var progressEl = sheet.querySelector('[data-progress]');
   var barEl = sheet.querySelector('[data-bar]');
   var verdictEl = sheet.querySelector('[data-verdict]');
+  var reportEl = sheet.querySelector('[data-print-report]');
+  var printButton = sheet.querySelector('[data-sheet-print]');
   var layerEls = Array.prototype.slice.call(sheet.querySelectorAll('[data-layer]'));
 
   function load() {
@@ -29,6 +31,18 @@
       /* private mode or storage disabled: the sheet still works, it just
          will not remember between visits. */
     }
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>\"']/g, function (ch) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;', "'": '&#39;' }[ch];
+    });
+  }
+
+  function textEscape(s) {
+    return String(s).replace(/[&<>]/g, function (ch) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[ch];
+    });
   }
 
   function layerState(layerId) {
@@ -63,6 +77,35 @@
     }
     if (barEl) {
       barEl.style.width = Math.round((cleared / ids.length) * 100) + '%';
+    }
+
+    if (reportEl) {
+      reportEl.innerHTML = '<h2>My decision-sheet snapshot</h2><p>Generated ' + esc(new Date().toLocaleDateString()) + ' · Stored only in this browser; this printout is not official evidence.</p><ul>' + ids.map(function (id) {
+        var s = layerState(id);
+        var el = layerEls.filter(function (n) { return n.getAttribute('data-layer') === id; })[0];
+        var checkedChecks = Array.prototype.slice.call(el.querySelectorAll('[data-check]')).filter(function (b) { return b.checked; });
+        var checkedStops = Array.prototype.slice.call(el.querySelectorAll('[data-stop]')).filter(function (b) { return b.checked; });
+        var label = esc(s.name || ('Layer ' + id));
+        var detail = s.stops > 0
+          ? 'STOP — ' + s.stops + ' stop condition' + (s.stops === 1 ? '' : 's') + ' selected'
+          : (s.done === s.total && s.total > 0
+            ? 'CLEARED — ' + s.done + ' of ' + s.total + ' checks'
+            : 'INCOMPLETE — ' + s.done + ' of ' + s.total + ' checks');
+        var confirmed = checkedChecks.map(function (b) {
+          var labelEl = b.closest ? b.closest('label') : null;
+          var textEl = labelEl && labelEl.querySelector('.sheet-text');
+          return textEl ? textEscape(textEl.textContent) : '';
+        }).filter(Boolean);
+        var stops = checkedStops.map(function (b) {
+          var labelEl = b.closest ? b.closest('label') : null;
+          var textEl = labelEl && labelEl.querySelector('.sheet-text');
+          return textEl ? textEscape(textEl.textContent) : '';
+        }).filter(Boolean);
+        return '<li><strong>' + label + ':</strong> ' + detail +
+          (confirmed.length ? '<p>Confirmed:</p><ul>' + confirmed.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' : '') +
+          (stops.length ? '<p>Stop conditions:</p><ul>' + stops.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' : '') +
+          '</li>';
+      }).join('') + '</ul>';
     }
 
     if (!verdictEl) return;
@@ -110,6 +153,18 @@
       render();
     });
   });
+
+  if (printButton) {
+    printButton.addEventListener('click', function () {
+      document.body.classList.add('print-sheet-only');
+      window.print();
+    });
+    if (window.addEventListener) {
+      window.addEventListener('afterprint', function () {
+        document.body.classList.remove('print-sheet-only');
+      });
+    }
+  }
 
   var reset = sheet.querySelector('[data-sheet-reset]');
   if (reset) {

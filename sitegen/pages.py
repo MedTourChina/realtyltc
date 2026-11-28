@@ -244,16 +244,28 @@ def home(cities: list[dict], guides: list[dict]) -> str:
 
 def cities_index(cities: list[dict]) -> str:
     cards = "".join(L.city_card(c, i) for i, c in enumerate(cities))
-    rows = "".join(
-        f"""<tr>
-      <td><a href="/cities/{c['slug']}/"><strong>{L.esc(c['name'])}</strong></a><br><span class="muted">{L.esc(c['name_zh'])}</span></td>
-      <td>{L.esc(c['region'])}</td>
+
+    def _dots(n, label: str) -> str:
+        filled = max(0, min(4, int(n or 0)))
+        return (
+            f'<span class="lvl" aria-label="{L.esc(label)} rating {filled} of 4">'
+            + "".join(
+                '<i class="on" aria-hidden="true"></i>' if i < filled else '<i aria-hidden="true"></i>' for i in range(4)
+            )
+            + "</span>"
+        )
+
+    def _cmp_row(c: dict) -> str:
+        cmp = c.get("compare") or {}
+        return f"""<tr>
+      <td class="cmp-city"><a href="/cities/{c['slug']}/"><strong>{L.esc(c['name'])}</strong></a><span class="muted">{L.esc(c['name_zh'])} · {L.esc(c['region'])}</span></td>
       <td class="nowrap">{L.esc(c['price_band'])}</td>
       <td class="nowrap">{L.esc(c['yield_band'])}</td>
-      <td>{L.esc(c['best_for'])}</td>
+      <td>{_dots(cmp.get('friction'), 'Local discretion')}<span class="cmp-label">{L.esc(cmp.get('friction_label', ''))}</span><span class="cmp-note">{L.esc(cmp.get('friction_note', ''))}</span></td>
+      <td>{_dots(cmp.get('pool'), 'Buyer pool depth')}<span class="cmp-label">{L.esc(cmp.get('pool_label', ''))}</span><span class="cmp-note">{L.esc(cmp.get('pool_note', ''))}</span></td>
     </tr>"""
-        for c in cities
-    )
+
+    rows = "".join(_cmp_row(c) for c in cities)
 
     body = f"""
 <section class="section">
@@ -272,16 +284,18 @@ def cities_index(cities: list[dict]) -> str:
   <div class="wrap">
     <div class="section-head">
       <p class="eyebrow">At a glance</p>
-      <h2 class="section-title">Compare on the numbers</h2>
-      <p class="section-sub">Indicative secondary-market asking prices and gross yields, compiled from public listings. Yields are gross of management fees, heating and vacancy, which together remove roughly a third.</p>
+      <h2 class="section-title">Compare on the questions the city pages answer</h2>
+      <p class="section-sub">There is no reliable one-number answer to “how hard is it for a foreigner to buy here?” Eligibility depends on your documents, household and the specific district’s current practice. The city pages identify the local checks to verify rather than treating a citywide rule as guaranteed.</p>
+      <p class="section-sub">The ratings below are a reading aid, not official data: local eligibility friction runs from 1 (few extra local checks) to 4 (multiple layers or district variation); resale buyer pool runs from 1 (narrow or slow) to 4 (deeper or faster). A higher friction rating is harder; a higher buyer-pool rating is more liquid. Individual buildings can differ sharply from their city’s rating.</p>
     </div>
     <div class="table-wrap">
-      <table>
-        <thead><tr><th>City</th><th>Region</th><th>Median asking</th><th>Gross yield</th><th>Best suited to</th></tr></thead>
+      <table class="cmp-table">
+        <thead><tr><th>City</th><th class="nowrap">Asking ¥/m²</th><th class="nowrap">Gross yield</th><th>Layers of local discretion</th><th>Buyer pool on exit</th></tr></thead>
         <tbody>{rows}</tbody>
       </table>
     </div>
-    {L.editorial_note('Ranges, not appraisals. Check the specific unit against recent registered transactions in the same building before you use any number here in a negotiation.')}
+    {L.editorial_note('Asking prices and yields are indicative secondary-market ranges from public listings, gross of management fees, heating and vacancy, which together remove roughly a third. The two rated columns are judgements about friction and resale depth, relative to this list — an aid to asking the right question, not a number to quote.')}
+{L.term_chips_by_ids(C.CITY_TERMS, 'The four words this page turns on')}
   </div>
 </section>
 

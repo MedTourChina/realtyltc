@@ -1,0 +1,99 @@
+{
+  "_note": "Editorial ordinal guides, not official measurements. friction 1-4 = relative amount of local eligibility checking or variation; pool 1-4 = relative resale depth/speed. See the text beside the table for interpretation and limits.",
+  "shanghai": {
+    "friction": 1,
+    "friction_label": "Uniform",
+    "friction_note": "No citywide extra qualification rule is evident in the material reviewed; confirm your exact documents and district process with the housing bureau.",
+    "pool": 4,
+    "pool_label": "Deep",
+    "pool_note": "Compare recent registered sales and days on market for the same building and unit type; city averages conceal price-band differences."
+  },
+  "beijing": {
+    "friction": 2,
+    "friction_label": "Spouse declaration",
+    "friction_note": "Ask whether the spouse's property holdings or status enter your eligibility review; do not treat a verbal answer as approval.",
+    "pool": 3,
+    "pool_label": "Deep but repriced",
+    "pool_note": "Check recent registered sales for this building and verify any school-catchment claim directly with the district education authority."
+  },
+  "shenzhen": {
+    "friction": 2,
+    "friction_label": "Records verified",
+    "friction_note": "Confirm which local social-insurance or tax records the bureau accepts and whether any district-specific documents apply.",
+    "pool": 3,
+    "pool_label": "Split",
+    "pool_note": "Liquidity varies sharply by subdistrict and building age; compare registered transactions and time-on-market for the exact stock type."
+  },
+  "guangzhou": {
+    "friction": 3,
+    "friction_label": "District rules",
+    "friction_note": "Ask the district housing bureau to confirm the current rule for your household and this exact unit; do not rely on citywide summaries.",
+    "pool": 3,
+    "pool_label": "Ordinary",
+    "pool_note": "Compare registered transactions for the exact district and building; peripheral stock and informal rental claims need separate verification."
+  },
+  "hangzhou": {
+    "friction": 2,
+    "friction_label": "Continuity checked",
+    "friction_note": "If eligibility depends on contribution history, obtain a written statement of the period and records required for your case.",
+    "pool": 2,
+    "pool_label": "Thin outside the core",
+    "pool_note": "Compare completed registered sales, not launch prices, in the exact peripheral district and building phase."
+  },
+  "suzhou": {
+    "friction": 3,
+    "friction_label": "Two regimes",
+    "friction_note": "Confirm the address-specific housing, registration and renovation process with the relevant district office before paying a deposit.",
+    "pool": 2,
+    "pool_label": "Expat-dependent",
+    "pool_note": "Do not assume an expatriate-only buyer pool; test demand against registered resale transactions in SIP for comparable units."
+  },
+  "chengdu": {
+    "friction": 1,
+    "friction_label": "Uniform",
+    "friction_note": "Check the current national eligibility documents and obtain a written reply from the local housing bureau for your household.",
+    "pool": 2,
+    "pool_label": "Thin in new districts",
+    "pool_note": "The risk is oversupply rather than price. In Tianfu and the outer districts resale can take a year and still fail."
+  },
+  "nanjing": {
+    "friction": 1,
+    "friction_label": "Uniform",
+    "friction_note": "Ask the district office to confirm which work or study records establish the required period for your application.",
+    "pool": 2,
+    "pool_label": "Policy-dependent",
+    "pool_note": "Treat any catchment premium as unverified until the education authority confirms eligibility and recent sales show it is reflected."
+  },
+  "tianjin": {
+    "friction": 2,
+    "friction_label": "Binhai differs",
+    "friction_note": "If buying in Binhai, verify the address-specific application process with that district rather than relying on a Tianjin-wide summary.",
+    "pool": 1,
+    "pool_label": "Slow",
+    "pool_note": "Compare registered sales and marketing times for the exact district and unit type; a low entry price does not prove exit liquidity."
+  },
+  "qingdao": {
+    "friction": 3,
+    "friction_label": "Historically extra",
+    "friction_note": "Past local policies may not reflect current practice; ask the bureau which restrictions, if any, apply to this household today.",
+    "pool": 1,
+    "pool_label": "Seasonal",
+    "pool_note": "Use twelve months of verified rent and registered-sale data; seasonal asking prices are not evidence of year-round demand."
+  },
+  "xiamen": {
+    "friction": 2,
+    "friction_label": "Careful checks",
+    "friction_note": "Confirm the accepted identity, residence and eligibility documents with the local office; a general statement is not approval.",
+    "pool": 1,
+    "pool_label": "Island only",
+    "pool_note": "Island and off-island submarkets differ; use registered transactions for the exact location rather than a citywide liquidity claim."
+  },
+  "wuhan": {
+    "friction": 1,
+    "friction_label": "Uniform",
+    "friction_note": "Ask the local bureau to confirm the required work or study period and the records it accepts for your application.",
+    "pool": 1,
+    "pool_label": "Thin",
+    "pool_note": "Test the resale pool with registered sales and time-on-market for the building; a lower price alone does not establish liquidity."
+  }
+}

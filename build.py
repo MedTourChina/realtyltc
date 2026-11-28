@@ -147,6 +147,8 @@ def load_pages() -> list[dict]:
             "crumbs": meta.get("crumbs", [["Home", "/"], [meta.get("title", path.stem), None]]),
             "body": body,
             "updated": meta.get("updated", "2026-01-01"),
+            "terms": meta.get("terms", []),
+            "want_cities": str(meta.get("cities", "")).lower() == "true",
         })
     return out
 
@@ -275,8 +277,10 @@ def build() -> None:
 
     cities = load_json("cities.json")
     structure = load_json("city-structure.json")
+    compare = load_json("city-compare.json")
     for _city in cities:
         _city["structure"] = structure.get(_city["slug"])
+        _city["compare"] = compare.get(_city["slug"]) or {}
     faq = load_json("faq.json")
     guides = load_guides()
     chapters = load_framework(guides)
@@ -361,7 +365,7 @@ def build() -> None:
 
     # content pages (verify, about, legal)
     for post in content_pages:
-        write(url_to_file(post["path"]), pages_extra.content_page(post, nav_active="About"))
+        write(url_to_file(post["path"]), pages_extra.content_page(post, nav_active="About", cities=cities))
         written.append((post["path"], post["updated"]))
 
     # faq + 404

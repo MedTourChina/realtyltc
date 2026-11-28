@@ -4,6 +4,7 @@ description: An independent editorial project about buying property in China as 
 kicker: About
 path: /about/
 crumbs: [["Home", "/"], ["About", null]]
+terms: ["purchase-restriction", "supervised-escrow", "land-use-right"]
 ---
 
 :::answer
@@ -20,21 +21,21 @@ This site is the sponsor of that advice.
 
 ## How it is organised
 
-The site is built around five layers, in order:
+The site is built around five layers, in order. Each one can stop the process, and the order is the point: a cheap question comes before an expensive one.
 
-1. **Eligibility** — can you buy at all
-2. **Motive** — should you, given your horizon and the arithmetic
-3. **City** — which market, judged on seven dimensions
-4. **Asset** — which property, and what the land term really means
-5. **Closing** — how to verify claims and settle without losing a deposit
+1. **[Eligibility](/framework/eligibility/)** — can you buy at all. The one-year rule, the single-home quota, and what disqualifies a household.
+2. **[Motive](/framework/motive/)** — should you, given your horizon and the arithmetic. The layer almost every other source skips, because nobody is paid to ask it.
+3. **[City](/framework/city/)** — which market, judged on seven dimensions, compared across [the twelve cities](/cities/) where foreigners actually buy.
+4. **[Asset](/framework/asset/)** — which property, and what the [land term](/guides/seventy-fifty-forty-year-land-use/) really means.
+5. **[Closing](/framework/closing/)** — how to verify claims and settle without losing a deposit.
 
-Each layer has a stop condition. [The framework](/framework/) explains why the order matters.
+Running the five in order produces a verdict; the [decision sheet](/framework/decision-sheet/) is that sequence on one page, and it prints. If you want to test the arithmetic behind layer two before reading anything else, the [calculators](/tools/) will do it without storing a single number.
 
 ## Who writes it
 
 Written by **Maya Chen**, an editor who has spent a decade explaining Chinese property and immigration paperwork to people who arrived without a local network. Fact-checked against the rule it describes by **Wei Lian**, a property lawyer in Shanghai, on a per-page basis.
 
-Every page carries a review date. Pages about rules that change — eligibility, taxes, land terms — are rechecked more often than pages about process. If a page is out of date, it says so at the top rather than quietly ageing.
+Every page carries a review date. Pages about rules that change — eligibility, taxes, land terms — are rechecked more often than pages about process. If a page is out of date, it says so at the top rather than quietly ageing. Where a rule is set locally rather than nationally, the page says which office to ask rather than guessing at the local answer — [how to verify](/verify/) is the companion to that instruction.
 
 ## How it is funded
 
@@ -45,17 +46,19 @@ The running cost is a domain name and a static host, which together are smaller 
 ## What it deliberately does not do
 
 - **No services.** We do not buy, sell, let, negotiate or advise on a specific transaction.
-- **No recommendations.** No named agencies, lawyers, banks or developments. Only how to vet them yourself.
-- **No data collection.** No forms, no newsletter, no accounts, no analytics scripts, no cookies.
-- **No price forecasts.** A forecast would be the easiest thing to write and the least honest.
+- **No recommendations.** No named agencies, lawyers, banks or developments. Only how to vet them yourself — which is why [the verification page](/verify/) is written as questions to ask rather than people to call.
+- **No data collection.** No forms, no newsletter, no accounts, no analytics scripts, no cookies. The one piece of state the site keeps is the [decision sheet](/framework/decision-sheet/), and it stays in your browser — the [privacy page](/legal/privacy/) says exactly what that means.
+- **No price forecasts.** A forecast would be the easiest thing to write and the least honest. What the pages do instead is give you the arithmetic to run yourself.
 - **No listings.** A listings site competes with platforms that have better data and a commercial incentive to keep it current.
 
 ## Corrections
 
 If you find something factually wrong — a rule that has changed, a rate that is out of date, a figure that does not reconcile — the correction is genuinely welcome, because accuracy is the only asset this project has.
 
-Write to **notes@lifetourchina.com** with the page and the source. There is no other inbox, and no one will try to sell you anything in reply.
+Write to **notes@lifetourchina.com** with the page and the source. There is no other inbox, and no one will try to sell you anything in reply. The [terms of use](/legal/terms/) and the [disclaimer](/legal/disclaimer/) describe the limits of what this can be relied on for, in plainer language than most.
 
 ## The one thing to take away
 
 Use the framework before you use anyone else's advice — including ours. It is designed to help you reach "not yet" quickly and cheaply, and that is the outcome that saves the most.
+
+If you only read one page, read [Eligibility](/framework/eligibility/). It is the only layer where the answer is a fact rather than a judgement, and in some circumstances it is simply "no".

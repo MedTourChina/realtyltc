@@ -528,10 +528,13 @@ def _next_step_html(post: dict) -> str:
     return L.next_step(int(layer))
 
 
-def content_page(post: dict, *, nav_active: str | None = None) -> str:
+def content_page(post: dict, *, nav_active: str | None = None,
+                 cities: list[dict] | None = None) -> str:
     body_html = md.render(post["body"])
     toc_html = L.toc(md.headings(body_html))
     kicker = post.get("kicker", "")
+    terms_html = L.term_chips_by_ids(post.get("terms") or [], "The words this page turns on")
+    city_html = L.city_strip(cities) if (post.get("want_cities") and cities) else ""
 
     body = f"""
 <header class="article-head">
@@ -543,7 +546,7 @@ def content_page(post: dict, *, nav_active: str | None = None) -> str:
   </div>
 </header>
 <div class="wrap article-layout article-layout-content">
-  <div class="prose">{body_html}{_next_step_html(post)}</div>
+  <div class="prose">{body_html}{terms_html}{city_html}{_next_step_html(post)}</div>
   <aside class="article-aside">{toc_html}</aside>
 </div>"""
 
@@ -688,9 +691,14 @@ def decision_sheet(sheet_layers: list[dict]) -> str:
           <p class="sheet-progress" data-progress>0 of 5 layers cleared</p>
           <div class="sheet-bar" aria-hidden="true"><span data-bar style="width:0%"></span></div>
         </div>
-        <button type="button" class="sheet-reset" data-sheet-reset>Clear all</button>
+        <div class="sheet-actions">
+          <button type="button" class="sheet-print" data-sheet-print>Print my results</button>
+          <button type="button" class="sheet-reset" data-sheet-reset>Clear all</button>
+        </div>
       </div>
       <div class="sheet-verdict" data-verdict hidden></div>
+      <div class="sheet-print-report" data-print-report aria-live="polite"></div>
+      <p class="sheet-print-hint">Print my results opens your browser's print dialog. Choose “Save as PDF” to keep a dated snapshot; the full checklist can still be printed below.</p>
       {''.join(blocks)}
       <p class="sheet-foot">Print this page and take it to your lawyer. A ticked box is your own answer, not evidence — the sheet exists to show you which answers you have not actually checked.</p>
     </div>
